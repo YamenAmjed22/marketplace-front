@@ -1,0 +1,63 @@
+<div class="login-container">
+  <div class="login-background">
+  </div>
+  
+  <div class="login-card">
+    <div class="login-header">
+      <h2>Welcome Back</h2>
+      <p class="login-subtitle">Sign in to your account</p>
+    </div>
+
+    <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()" novalidate class="login-form">
+      <!-- Username -->
+      <div class="form-field">
+        <label for="username">
+          <i class="pi pi-user"></i> Username
+        </label>
+        <span class="p-input-icon-left">
+          <input id="username" type="text" pInputText formControlName="userName" class="inputField"
+                 placeholder="Enter your username" />
+        </span>
+        <small *ngIf="submitted && LoginForm.get('userName')?.invalid" class="error-message">
+          <i class="pi pi-exclamation-circle"></i> Username is required
+        </small>
+      </div>
+
+      <!-- Password -->
+      <div class="form-field">
+        <label for="password">
+          <i class="pi pi-lock"></i> Password
+        </label>
+        <span class="p-input-icon-left">
+          <input id="password" type="password" pInputText formControlName="password" class="inputField"
+                 placeholder="Enter your password" />
+        </span>
+        <small *ngIf="submitted && LoginForm.get('password')?.invalid" class="error-message">
+          <i class="pi pi-exclamation-circle"></i> Password is required
+        </small>
+      </div>
+
+
+
+      <!-- Submit Button -->
+      <button pButton type="submit" class="login-button">
+        <i class="pi pi-sign-in"></i> Sign In
+      </button>
+
+    
+
+      <!-- Messages -->
+      <div *ngIf="successMessage" class="success-message">
+        <i class="pi pi-check-circle"></i> {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        <i class="pi pi-exclamation-triangle"></i> {{ errorMessage }}
+      </div>
+
+      <!-- Register Link -->
+      <div class="register-link">
+        Don't have an account? <a (click)="goToRegister()">Sign up</a>
+      </div>
+    </form>
+  </div>
+</div>

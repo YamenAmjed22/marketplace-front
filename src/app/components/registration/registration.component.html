@@ -1,0 +1,120 @@
+<!-- register.component.html -->
+<div class="register-container">
+  <div class="register-card">
+    <div class="register-header">
+      <div class="welcome-banner">
+        <h1>Welcome to Our Community!</h1>
+        <p class="register-subtitle">Join thousands of happy members who are already enjoying our services</p>
+       
+      </div>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate class="register-form">
+      <div class="form-grid">
+        <!-- Username -->
+        <div class="form-field">
+          <label for="username">
+            <i class="pi pi-user"></i> Username
+          </label>
+          <input id="username" type="text" pInputText formControlName="userName" 
+                 placeholder="Choose a unique username" />
+          <small *ngIf="submitted && registerForm.get('userName')?.invalid" class="error-message">
+            <i class="pi pi-exclamation-circle"></i> Username is required
+          </small>
+        </div>
+
+        <!-- Password -->
+        <div class="form-field">
+          <label for="password">
+            <i class="pi pi-lock"></i> Password
+          </label>
+          <input id="password" type="password" pInputText formControlName="password" 
+                 placeholder="At least 8 characters" />
+          <small *ngIf="submitted && registerForm.get('password')?.invalid" class="error-message">
+            <i class="pi pi-exclamation-circle"></i> Password is required (min 8 characters)
+          </small>
+        </div>
+
+        <!-- First Name -->
+        <div class="form-field">
+          <label for="firstName">
+            <i class="pi pi-id-card"></i> First Name
+          </label>
+          <input id="firstName" type="text" pInputText formControlName="firstName" 
+                 placeholder="What should we call you?" />
+          <small *ngIf="submitted && registerForm.get('firstName')?.invalid" class="error-message">
+            <i class="pi pi-exclamation-circle"></i> First name is required
+          </small>
+        </div>
+
+        <!-- Last Name -->
+        <div class="form-field">
+          <label for="lastName">
+            <i class="pi pi-id-card"></i> Last Name
+          </label>
+          <input id="lastName" type="text" pInputText formControlName="lastName" 
+                 placeholder="Your family name (optional)" />
+        </div>
+
+        <!-- Email -->
+        <div class="form-field">
+          <label for="email">
+            <i class="pi pi-envelope"></i> Email
+          </label>
+          <input id="email" type="email" pInputText formControlName="email" 
+                 placeholder="We'll never share your email" />
+          <small *ngIf="submitted && registerForm.get('email')?.invalid" class="error-message">
+            <i class="pi pi-exclamation-circle"></i> Valid email is required
+          </small>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-field">
+          <label for="phone">
+            <i class="pi pi-phone"></i> Phone
+          </label>
+          <input id="phone" type="text" pInputText formControlName="phone" 
+                 placeholder="For important updates" />
+          <small *ngIf="submitted && registerForm.get('phone')?.invalid" class="error-message">
+            <i class="pi pi-exclamation-circle"></i> Phone is required (min 10 digits)
+          </small>
+        </div>
+
+        <!-- Address -->
+        <div class="form-field full-width">
+          <label for="address">
+            <i class="pi pi-home"></i> Address
+          </label>
+          <input id="address" type="text" pInputText formControlName="address" 
+                 placeholder="Where can we find you? (optional)" />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button pButton type="submit" class="register-button" [disabled]="loading">
+          <i class="pi pi-user-plus mr-2"></i>
+          {{ loading ? 'Creating your account...' : 'Join Our Community' }}
+        </button>
+      </div>
+
+      <div class="form-messages">
+        <div *ngIf="successMessage" class="success-message">
+          <i class="pi pi-check-circle"></i> {{ successMessage }}
+          <p class="success-subtext">We're excited to have you on board! Check your email for next steps.</p>
+        </div>
+        <div *ngIf="errorMessage" class="error-message">
+          <i class="pi pi-exclamation-triangle"></i> {{ errorMessage }}
+        </div>
+      </div>
+
+      <div class="register-footer">
+
+        <p class="login-prompt">Already part of our community? 
+          <a (click)="goToLoginPage()" class="login-link">
+            <i class="pi pi-sign-in"></i> Sign in here
+          </a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,217 @@
+// Variables
+$primary-color: #222831;
+$secondary-color: #393E46;
+$light: #948979;
+$lighter: #DFD0B8;
+$white: #ffffff;
+$light-gray: #f9f9f9;
+
+// Base styles
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: $light-gray;
+    color: $primary-color;
+    line-height: 1.6;
+}
+
+.container {
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 0;
+
+    @media (max-width: 768px) {
+        width: 95%;
+    }
+}
+
+// Typography
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+        font-size: 2rem;
+    }
+}
+
+h2 {
+    color: $white;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background-color: $light;
+    }
+}
+
+// Header
+header {
+    background: linear-gradient(135deg, $lighter, $secondary-color);
+    color: $white;
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 80px;
+}
+
+// Intro section
+.intro {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+
+    p {
+
+        max-width: 700px;
+        margin: 0 auto;
+        color: $white;
+    }
+}
+
+// Services grid
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.service-card {
+    background: $white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.service-img {
+    height: 200px;
+    background-color: $lighter;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary-color;
+    font-size: 3rem;
+}
+
+.service-content {
+    padding: 1.5rem;
+
+    h3 {
+        color: $primary-color;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        color: $secondary-color;
+        margin-bottom: 1.5rem;
+    }
+}
+
+// Button styles
+.btn {
+    display: inline-block;
+    background-color: $light;
+    color: $white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: $secondary-color;
+    }
+}
+
+// Features section
+.features {
+    background-color: $lighter;
+    padding: 4rem 0;
+    margin: 3rem 0;
+
+    h2,h3 {
+        color: $primary-color;
+    }
+    p{
+        color: #948979;
+        font-weight: 500;
+        padding-bottom: 3%;
+    }
+
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: $primary-color;
+    margin-bottom: 1rem;
+}
+
+// CTA section
+.cta {
+    text-align: center;
+    padding: 4rem 0;
+    color: $white;
+
+    h2 {
+        color: $white;
+
+        &::after {
+            background-color: $lighter;
+        }
+    }
+
+    p {
+        max-width: 600px;
+        margin: 0 auto 2rem;
+    }
+
+    .btn {
+        background-color: $white;
+        color: $primary-color;
+
+        &:hover {
+            background-color: $lighter;
+        }
+    }
+}
+
+// Footer
+footer {
+    background-color:#DFD0B8;
+    color: $primary-color;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    font-weight: bold;
+}

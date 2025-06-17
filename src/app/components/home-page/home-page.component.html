@@ -1,0 +1,56 @@
+<div class="backGround fadeIn-high">
+
+
+    <app-navbar></app-navbar>
+
+    <main class="elegant-container mt-8">
+        <!-- Hero Section with Background Image -->
+        <section class="hero-with-bg">
+            <div class="hero-overlay"></div>
+            <img src="./assets/images/yamen-marketplace-img.png" class="yamen-img" alt="">
+            <div class="hero-content">
+                <h1>Discover Beautiful Finds</h1>
+                <p class="subtitle">Curated collection of quality products</p>
+                <button class="shop-now-btn" (click)="goToProducts()">Browse Collection</button>
+            </div>
+        </section>
+
+        <!-- Simple Product Showcase -->
+        <section class="simple-products">
+            <h2>The last added Items</h2>
+            <div class="product-showcase">
+                <div class="product-card" *ngFor="let product of featuredItems">
+                    <div class="product-image">
+                        <img [src]="product.productImage" [alt]="product.productName">
+                    </div>
+                    <div class="product-info">
+                        <h3>{{ product.productName }}</h3>
+                        <div class="stars ">
+                            <Span style="font-weight: 700; color: rgb(0, 0, 0); margin-right: 5px;">{{product.rating}}</Span>
+
+                            @for (star of product.rating + 1; track $index) {
+                            <span>
+                                <svg class="star" [class.filled]="product.rating" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                            </span>
+                            }
+                        </div>
+                        <p class="price">{{ product.productPrice | currency }}</p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Simple Call to Action -->
+        <section class="simple-cta">
+            <h2>Ready to find your perfect item?</h2>
+            <button class="cta-btn" (click)="goToProducts()">Start Shopping</button>
+        </section>
+    </main>
+
+</div>

@@ -1,0 +1,63 @@
+@use 'nzrm-ng/src/lib/styles/global-styles.scss';
+@import 'primeicons/primeicons.css';
+@import "primeflex/primeflex.css";
+@import "primeng/resources/themes/mdc-dark-deeppurple/theme.css";
+@import "primeng/resources/primeng.css";
+
+:root {
+    --primary-color: #222831;
+    --secondary-color: #393E46;
+    --light: #948979;
+    --lighter: #DFD0B8;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.fade-delay-1 {
+    animation-delay: 0.2s;
+}
+
+.fade-delay-2 {
+    animation-delay: 0.5s;
+}
+
+.fade-delay-3 {
+    animation-delay: 0.8s;
+}
+
+.fade-delay-4 {
+    animation-delay: 1.1s;
+}
+
+.fadeIn {
+    animation: fadeIn .3s ease;
+}
+
+.fadeIn-high {
+    animation: fadeIn .8s ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes backgroundAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.color{ 
+      background: linear-gradient(135deg, #000000 0%, #16213e 100%);
+
+}

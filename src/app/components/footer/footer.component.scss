@@ -1,0 +1,17 @@
+.Bold {
+  font-weight: bold;
+  color: #f3f4f6;
+  /* Light gray text color */
+  letter-spacing: 0.5px;
+  /* Slightly wider letters */
+  text-transform: uppercase;
+  /* Make the text all UPPERCASE */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  /* Soft shadow for a cooler effect */
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}

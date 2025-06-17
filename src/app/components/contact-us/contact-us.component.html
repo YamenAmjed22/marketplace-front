@@ -1,0 +1,115 @@
+<app-navbar></app-navbar>
+
+<div class="contact-page-container">
+  <!-- Decorative background elements -->
+  <div class="contact-bg-elements">
+    <div class="bg-circle circle-1"></div>
+    <div class="bg-circle circle-2"></div>
+    <div class="bg-blur"></div>
+  </div>
+
+  <div class="contact-content">
+    <!-- Left side - Contact info -->
+    <div class="contact-info">
+      <div class="info-content">
+        <h2>Get in Touch</h2>
+        <p class="subtitle">We'd love to hear from you! Reach out through any of these channels.</p>
+        
+        <div class="contact-methods">
+          <div class="contact-method">
+            <div>
+              <div class="title-icon-container">
+                <i class="pi pi-map-marker"></i>
+                <h4>Our Location</h4>
+              </div>
+              <p>Al Ameed Coffe Gardens<br>Sport city circle , Amman </p>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <div>
+              <div class="title-icon-container">
+                <i class="pi pi-envelope"></i>
+                <h4>Email Us</h4>
+              </div>
+              <p>{{email}}</p>
+            </div>
+          </div> 
+          
+          <div class="contact-method">
+            <div>
+              <div class="title-icon-container">
+                <i class="pi pi-phone"></i>
+                <h4>Call Us</h4>
+              </div>
+              <p>962792960177<br>sun-thir, 9am-5pm </p>
+            </div>
+          </div>
+        </div>
+        
+ 
+      </div>
+    </div>
+
+    <!-- Right side - Contact form -->
+    <div class="contact-form-container">
+      <div class="form-header">
+        <i class="pi pi-send form-icon"></i>
+        <h2>Send Us a Message</h2>
+        <p>Fill out the form below and we'll get back to you shortly.</p>
+      </div>
+
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate class="contact-form">
+        <div class="form-grid">
+          <!-- Name -->
+          <div class="form-field">
+            <label for="name">Name <span>*</span></label>
+            <input id="name" class = "inputTextStyle" type="text" pInputText formControlName="name" placeholder="Your name" />
+            <small *ngIf="submitted && contactForm.get('name')?.invalid" class="error-message">
+              <i class="pi pi-exclamation-circle"></i> Name is required
+            </small>
+          </div>
+
+          <!-- Email -->
+          <div class="form-field">
+            <label for="email">Email <span>*</span></label>
+            <input id="email" class = "inputTextStyle" type="email" pInputText formControlName="email" placeholder="your.email@example.com" />
+            <small *ngIf="submitted && contactForm.get('email')?.invalid" class="error-message">
+              <i class="pi pi-exclamation-circle"></i> Valid email is required
+            </small>
+          </div>
+
+          <!-- Subject -->
+          <div class="form-field full-width">
+            <label for="subject">Subject</label>
+            <input id="subject" class = "inputTextStyle" type="text" pInputText formControlName="subject" placeholder="What's this about?" />
+          </div>
+
+          <!-- Message -->
+          <div class="form-field full-width">
+            <label for="message">Message <span>*</span></label>
+            <textarea id="message" class="inputTextStyle" rows="5" pInputTextarea formControlName="message" placeholder="Your message here..."></textarea>
+            <small *ngIf="submitted && contactForm.get('message')?.invalid" class="error-message">
+              <i class="pi pi-exclamation-circle"></i> Message is required
+            </small>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="submit-wrapper">
+          <button pButton type="submit" class="submit-button">
+            <i class="pi pi-send"></i> Send Message
+          </button>
+        </div>
+
+        <!-- Feedback Messages -->
+        <div *ngIf="successMessage" class="success-message">
+          <i class="pi pi-check-circle"></i> {{ successMessage }}
+        </div>
+        <div *ngIf="errorMessage" class="error-message">
+          <i class="pi pi-exclamation-triangle"></i> {{ errorMessage }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

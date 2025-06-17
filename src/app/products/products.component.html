@@ -1,0 +1,81 @@
+<app-navbar></app-navbar>
+<div class="products-page">
+  <div class="page-header">
+    <h1 class="page-title">Discover Our Products</h1>
+    <p class="page-subtitle">Find exactly what you're looking for</p>
+    <button class="shop-now-btn" (click)="goToAddProducts()">Add New Product </button>
+
+  </div>
+
+
+
+  <div class="filter-section">
+    <div class="search-container">
+      <div class="search-box">
+        <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Search products...">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="category-filter">
+      <label for="category-select" class="filter-label">Filter by:</label>
+      <select id="category-select" [(ngModel)]="selectedCategory" (change)="onCategoryChange(selectedCategory)"
+        class="filter-select">
+        <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div *ngIf="products?.length === 0" class="empty-state" [ngClass]="products?.length === 0 ? 'fadeIn-high' : ''">
+    <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="No products found" class="empty-image">
+    <h3>No products found</h3>
+    <p>Try adjusting your search or filter criteria</p>
+  </div>
+
+  <div class="product-grid">
+    <div *ngFor="let product of filteredProducts" class="product-card fadeIn-high">
+      <div class="product-badge" *ngIf="+product.rating >= 4">BESTSELLER</div>
+      <div class="product-image-container">
+        <img [src]="product.productImage" [alt]="product.productName" class="product-image">
+      </div>
+      <div class="product-content">
+        <div class="product-category">{{product.productType}}</div>
+        <h3 class="product-title">{{product.productName}}</h3>
+        <span class="product-price">${{product.productPrice}}</span>
+
+        <p class="product-description">{{product.productDescription}}</p>
+
+        <div class="product-rating">
+          <div class="stars">
+            @for (star of product.rating + 1; track $index) {
+              <span>
+                <svg class="star" [class.filled]="product.rating" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+              </span>
+            }
+          </div>
+          <span class="rating-value">{{product.rating}}</span>
+        </div>
+
+        <div class="product-footer">
+          <button class="add-to-cart-btn">
+            <svg class="cart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+            </svg>
+            Add to Cart
+          </button>
+
+
+          <button class="delete-btn" (click)="deleteProduct(product.id)">
+            🗑 Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

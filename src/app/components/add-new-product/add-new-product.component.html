@@ -1,0 +1,78 @@
+<div class="add-product-container">
+  <div class="add-product-card">
+    <h2>Add New Product</h2>
+
+    <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-grid">
+
+        <!-- Product Name -->
+        <div class="form-field">
+          <label for="productName">Product Name</label>
+          <input id="productName" type="text" formControlName="productName" />
+        </div>
+
+        <!-- Product Description -->
+        <div class="form-field">
+          <label for="productDescription">Description</label>
+          <textarea id="productDescription" formControlName="productDescription" class="product-description"></textarea>
+        </div>
+
+        <!-- Product Price -->
+        <div class="form-field">
+          <label for="productPrice">Price</label>
+          <input id="productPrice" type="number" formControlName="productPrice" />
+        </div>
+
+        <!-- Status -->
+        <div class="form-field">
+          <label for="status">Status</label>
+          <input id="status" type="text" formControlName="status" />
+        </div>
+
+
+        <!-- Category Name -->
+        <div class="form-field">
+          <label for="productCategory">Category Name</label>
+          <select id="productCategory" formControlName="productCategory">
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+          </select>
+        </div>
+
+
+        <!-- Stock Quantity -->
+        <div class="form-field">
+          <label for="stockQuantity">Stock Quantity</label>
+          <input id="stockQuantity" type="number" formControlName="stockQuantity" />
+        </div>
+
+        <!-- Rating -->
+        <div class="form-field">
+          <label for="rating">Rating</label>
+          <input id="rating" type="text" formControlName="rating" />
+        </div>
+
+        <!-- Category ID -->
+        <div class="form-field">
+          <label for="categoryId">Category ID</label>
+          <input id="categoryId" type="text" formControlName="categoryId" />
+        </div>
+
+        <!-- Product Image File Upload -->
+        <div class="form-field">
+          <label for="productImage">Product Image</label>
+          <input type="file" (change)="onImageSelected($event)" />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="button">Add Product</button>
+        <button type="button" class="button" (click)="goToProducts()">Go To Products</button>
+      </div>
+
+      <div class="form-messages">
+        <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      </div>
+    </form>
+  </div>
+</div>
