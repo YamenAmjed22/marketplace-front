@@ -4,13 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #000000 0%, #16213e 100%);
 
 
 }
 
 .register-card {
-  background: var(--primary-color, #dddde4);
   border-radius: 1rem;
   box-shadow: 0 10px 30px var(--light);
   backdrop-filter: blur(10px);
@@ -67,7 +65,7 @@ label {
 }
 
 input.p-inputtext {
-  background-color: #2e2e3e !important;
+  background-color: #52451fa9 !important;
   color: #fff !important;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
