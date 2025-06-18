@@ -10,7 +10,6 @@ import { FooterComponent } from "../footer/footer.component";
   imports: [
     CommonModule,
     NavbarComponent,
-    FooterComponent
 ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',

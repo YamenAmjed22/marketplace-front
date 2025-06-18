@@ -3,11 +3,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #000000 0%, #16213e 100%);
 }
 
 .add-product-card {
-  background: var(--primary-color, #dddde4);
   border-radius: 1rem;
   box-shadow: 0 10px 30px var(--light);
   backdrop-filter: blur(10px);
@@ -141,5 +139,10 @@ textarea.p-inputtextarea:focus {
 
 
 .product-description{
-    height: 22px;
+    height: 30px;
 }
+
+
+.inputFieldStyle{ 
+  height: 30px;
+} 

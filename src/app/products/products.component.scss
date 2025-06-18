@@ -72,11 +72,12 @@ $transition: all 0.3s ease;
     input {
         width: 100%;
         padding: 0.8rem 1rem 0.8rem 2.5rem;
-        border: 1px solid $border-color;
+        border: 3px solid rgba(82, 69, 31, 0.662745098) !important ;
         border-radius: 50px;
         font-size: 1rem;
         transition: $transition;
         box-shadow: $shadow;
+        background-color: var(--light) !important;
 
         &:focus {
             outline: none;
