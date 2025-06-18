@@ -1,14 +1,21 @@
 <div class="backGround fadeIn-high">
 
+    <main class="elegant-container">
+            <app-navbar></app-navbar>
 
-    <app-navbar></app-navbar>
-
-    <main class="elegant-container mt-8">
         <!-- Hero Section with Background Image -->
+        <!-- In your component template, modify the hero section like this -->
         <section class="hero-with-bg">
             <div class="hero-overlay"></div>
-            <img src="./assets/images/yamen-marketplace-img.png" class="yamen-img" alt="">
-            <div class="hero-content">
+            <img
+            src="./assets/images/wallpaperForMarcketPlace-min.jpg"
+            class="hero-image" alt="Marketplace background"
+            loading="lazy"
+            (load)="onLoad()"
+            [ngClass]="isImgLoaded ? 'fadeIn-high' : 'opacity-0'"
+            >
+            <div class="dark-overlay"></div>
+            <div *ngIf="isImgLoaded" class="hero-content" [ngClass]="{'fadeIn-text-high fadeUp': isImgLoaded}">
                 <h1>Discover Beautiful Finds</h1>
                 <p class="subtitle">Curated collection of quality products</p>
                 <button class="shop-now-btn" (click)="goToProducts()">Browse Collection</button>
@@ -26,7 +33,7 @@
                     <div class="product-info">
                         <h3>{{ product.productName }}</h3>
                         <div class="stars ">
-                            <Span style="font-weight: 700; color: rgb(0, 0, 0); margin-right: 5px;">{{product.rating}}</Span>
+                            <Span class="stars-number">{{product.rating}}</Span>
 
                             @for (star of product.rating + 1; track $index) {
                             <span>
@@ -50,7 +57,9 @@
         <section class="simple-cta">
             <h2>Ready to find your perfect item?</h2>
             <button class="cta-btn" (click)="goToProducts()">Start Shopping</button>
-        </section>
-    </main>
+            
+        </section> 
 
+
+    </main>
 </div>

@@ -1,28 +1,32 @@
-.backGround{
-      background: linear-gradient(135deg, #000000 0%, #16213e 100%);
+.backGround {
+    background: black;
+    margin: 0;
+    padding: 0;
 
 }
+
 // home-page.component.scss
 .elegant-container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
+    padding: 0;
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: #333;
+    color: black;
     margin-top: 4rem;
 }
 
 /* Hero with Background Image */
 .hero-with-bg {
     position: relative;
-    height: 70vh;
-    min-height: 500px;
-    // background-image: url('/assets/images/yamen-marketplace-img.png');
-    background-size: cover;
-    background-position: center;
+    height: 100vh;
+    /* Full viewport height */
+    width: 100%;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 60px;
+    margin-top: 0;
 
     .hero-overlay {
         position: absolute;
@@ -30,7 +34,19 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.3);
+        /* Semi-transparent overlay */
+        z-index: 1;
+    }
+
+    .hero-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
     }
 
     .hero-content {
@@ -40,41 +56,57 @@
         color: white;
         padding: 0 20px;
         max-width: 800px;
+        animation: fadeInUp 1s ease-out;
+        margin-top: 18%;
 
         h1 {
-            font-size: 3rem;
-            font-weight: 300;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
             color: var(--light);
-            font-weight: bold;
+
+            @media (max-width: 768px) {
+                font-size: 2.5rem;
+            }
         }
 
         .subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+
+            @media (max-width: 768px) {
+                font-size: 1.2rem;
+            }
         }
 
         .shop-now-btn {
-            padding: 12px 35px;
+            padding: 15px 40px;
             background-color: transparent;
             border: 2px solid var(--lighter);
             border-radius: 30px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            color: white;
             cursor: pointer;
-            transition: all 0.3s ease; 
-            color: var(--light);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
 
             &:hover {
-                background-color: var(--light);
-                color: white; 
-                
-
+                background-color: var(--lighter);
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                color: black;
             }
         }
     }
 }
+
+/* Animation for the hero content */
+
 
 .yamen-img {
     object-fit: cover;
@@ -88,10 +120,11 @@
 
     h2 {
         font-size: 2rem;
-        font-weight: 300;
-        margin-bottom: 40px;
-        color: var(--lighter);
         font-weight: bold;
+        margin-bottom: 5%;
+        color: var(--light);
+        font-weight: bold;
+        margin-top: 8%;
     }
 
     .product-showcase {
@@ -101,7 +134,7 @@
     }
 
     .product-card {
-        background: white;
+        background: var(--gray-900);
         border-radius: 8px;
         overflow: hidden;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
@@ -129,12 +162,17 @@
 
         .product-info {
             padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            border-top: none;
+            border-top-left-radius: 0 !IMPORTANT;
+            border-top-right-radius: 0 !important;
 
             h3 {
                 font-size: 1.2rem;
                 font-weight: 700;
                 margin-bottom: 10px;
-                color: #0b1c0e;
+                color: var(--blue-50);
             }
 
             .price {
@@ -161,23 +199,30 @@
     }
 }
 
+.dark-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100svh;
+    background: #0000006e;
+}
+
 /* Simple CTA */
 .simple-cta {
     text-align: center;
     padding: 60px 20px;
-    background-color: var(--lighter);
+    background-color: var(--light);
     margin-bottom: 10px;
 
     h2 {
-        font-size: 2rem;
+        font-size: 3rem;
         font-weight: 300;
         margin-bottom: 30px;
-        color: #444;
+        color: white;
     }
 
     .cta-btn {
         padding: 12px 40px;
-        background-color: #6b8e8e;
+        background-color: black;
         color: white;
         border: none;
         border-radius: 30px;
@@ -186,8 +231,13 @@
         transition: all 0.3s;
 
         &:hover {
-            background-color: #5a7a7a;
+            background-color:white;
             transform: translateY(-2px);
+            color : black; 
+            font-size: x-large; 
+            font-weight: 500;  
+            
+
         }
     }
 }
@@ -228,16 +278,22 @@
     }
 }
 
-    .stars {
-        gap: 0.1rem;
-    }
+.stars {
+    gap: 0.1rem;
 
-    .star {
-        width: 1rem;
-        height: 1rem;
-        fill: #e0e0e0;
-
-        &.filled {
-            fill: orange;
-        }
+    .stars-number {
+        font-weight: 700;
+        color: var(--blue-50);
+        margin-right: 5px;
     }
+}
+
+.star {
+    width: 1rem;
+    height: 1rem;
+    fill: #e0e0e0;
+
+    &.filled {
+        fill: orange;
+    }
+}

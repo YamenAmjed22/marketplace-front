@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-
+logo:String = "Stroll @ The Markcet "
 goToContact() {
     this.router.navigate(['/contact'])
 }
