@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Router } from '@angular/router';
 import { RegistrationService } from '../../Services/registration.service';
-import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-home-page',
   imports: [
     CommonModule,
-    NavbarComponent,
+    NavbarComponent
 ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',

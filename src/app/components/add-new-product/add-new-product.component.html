@@ -1,5 +1,4 @@
-
-<div class="add-product-container"> 
+<div class="add-product-container">
 
   <div class="add-product-card">
     <h2>Add New Product</h2>
@@ -10,7 +9,7 @@
         <!-- Product Name -->
         <div class="form-field">
           <label for="productName">Product Name</label>
-          <input id="productName"   class="inputFieldStyle"   type="text" formControlName="productName" />
+          <input id="productName" class="inputFieldStyle" type="text" formControlName="productName" />
         </div>
 
         <!-- Product Description -->
@@ -22,41 +21,46 @@
         <!-- Product Price -->
         <div class="form-field">
           <label for="productPrice">Price</label>
-          <input id="productPrice"   class="inputFieldStyle" type="number" formControlName="productPrice" />
+          <input id="productPrice" class="inputFieldStyle" type="number" formControlName="productPrice" />
         </div>
 
         <!-- Status -->
         <div class="form-field">
           <label for="status">Status</label>
-          <input id="status"   class="inputFieldStyle" type="text" formControlName="status" />
+          <input id="status" class="inputFieldStyle" type="text" formControlName="status" />
         </div>
 
 
         <!-- Category Name -->
         <div class="form-field">
           <label for="productCategory">Category Name</label>
-          <select id="productCategory" class="inputFieldStyle" formControlName="productCategory">
-            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+          <select id="productCategory" class="inputFieldStyle" formControlName="productCategory"
+            (change)="onCategoryChange($event)">
+            <option *ngFor="let category of categories" [value]="category.name">
+              {{ category.name }}
+            </option>
           </select>
+
+
         </div>
 
 
         <!-- Stock Quantity -->
         <div class="form-field">
           <label for="stockQuantity">Stock Quantity</label>
-          <input id="stockQuantity"  class="inputFieldStyle"  type="number" formControlName="stockQuantity" />
+          <input id="stockQuantity" class="inputFieldStyle" type="number" formControlName="stockQuantity" />
         </div>
 
         <!-- Rating -->
         <div class="form-field">
           <label for="rating">Rating</label>
-          <input id="rating" class="inputFieldStyle"  type="text" formControlName="rating" />
+          <input id="rating" class="inputFieldStyle" type="text" formControlName="rating" />
         </div>
 
         <!-- Category ID -->
         <div class="form-field">
           <label for="categoryId">Category ID</label>
-          <input id="categoryId" class="inputFieldStyle"  type="text" formControlName="categoryId" />
+          <input id="categoryId" class="inputFieldStyle" type="text" formControlName="categoryId" readonly />
         </div>
 
         <!-- Product Image File Upload -->

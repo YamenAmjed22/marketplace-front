@@ -19,7 +19,14 @@ export class AddNewProductComponent {
   selectedImageFile: File | null = null;
   successMessage = '';
   errorMessage = '';
-  categories: string[] = ['Electronics', 'Fitness', 'Accessories', 'Home'];
+
+ categories = [
+  { name: 'Home', id: 'f30bbfae-2764-4b47-a18e-414a5684cc52' },
+  { name: 'Accessories', id: 'b364abdd-c5dc-4219-a5bf-a340d0063493' },
+  { name: 'Fitness', id: 'aed67e16-7351-4bf9-8fb9-22b0def1ada4' },
+  { name: 'Electronics', id: 'aeb17982-1e03-474c-9e1f-7fd39c9d0ec8' }
+];
+
 
 
   constructor(
@@ -109,5 +116,18 @@ export class AddNewProductComponent {
 
   goToProducts(): void {
     this.router.navigate(['/products']);
+  } 
+
+onCategoryChange(event: Event): void {
+  const selectedName = (event.target as HTMLSelectElement).value;
+  const selectedCategory = this.categories.find(cat => cat.name === selectedName);
+
+  if (selectedCategory) {
+    this.addProductForm.patchValue({
+      categoryId: selectedCategory.id
+    });
   }
+}
+
+
 }

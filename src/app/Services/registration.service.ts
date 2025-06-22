@@ -47,11 +47,23 @@ export class RegistrationService {
     getAllProducts() {
         return this.http.get(this.apiUrl + "/products");
     }
-    
-        deleteProductById(id:any) {
+
+    deleteProductById(id: any) {
         return this.http.delete(this.apiUrl + "/products/" + `${id}`);
     }
 
+    addProductToTheCart(addedProduct: any) {
+        return this.http.post(this.apiUrl + "/MyCart", addedProduct)
+    }
+
+    getAllProductsFromCart() {
+        return this.http.get(this.apiUrl + "/MyCart");
+    }
+    
+    deleteProductFromCartById(id:any){
+        return this.http.delete(this.apiUrl  + "/MyCart/"+ `${id}`);
+
+    }
 
 
 

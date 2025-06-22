@@ -8,6 +8,7 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { AboutComponent } from './components/about/about.component';
 import { AddNewProductComponent } from './components/add-new-product/add-new-product.component';
 import { ServiceComponent } from './components/servicePage/service.component';
+import { CartComponent } from './components/cart/cart.component';
 
 export const routes: Routes = [
     {
@@ -44,6 +45,9 @@ export const routes: Routes = [
     {
         path:'service',
         component:ServiceComponent
+    },{
+        path:'cart',
+        component:CartComponent
     }
 
 ];

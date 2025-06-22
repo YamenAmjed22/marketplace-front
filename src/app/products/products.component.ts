@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NavbarComponent } from "../components/navbar/navbar.component";
 import { RegistrationService } from '../Services/registration.service';
 import { Product } from '../models/product.interface';
-import { ButtonModule, ConfirmationDialogService, NotificationService } from 'nzrm-ng'; 
+import { ButtonModule, ConfirmationDialogService, NotificationService } from 'nzrm-ng';
 
 @Component({
   selector: 'app-products',
@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
 
   products: Product[] | undefined;
   filteredProducts: Product[] | undefined;
-  categories: string[] = ['All','Electronics','Fitness' ,'Accessories' ,'Home' ];
+  categories: string[] = ['All', 'Electronics', 'Fitness', 'Accessories', 'Home'];
   selectedCategory = 'All';
   searchTerm = '';
 
@@ -60,6 +60,27 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['/addProducts']);
   }
 
+
+  addToCart(product: any) {
+    const cartProduct = {
+      productName: product.productName,
+      productDescription: product.productDescription,
+      productPrice: product.productPrice,
+      productType: product.productType,
+      productImage: product.productImage,
+      rating: product.rating
+    };
+    this.registrationService.addProductToTheCart(cartProduct).subscribe({
+      next: () => {
+        console.log('Product added to cart:', product.productName);
+        alert(`${product.productName} added to cart successfully!`);
+      },
+      error: (err) => {
+        console.error('Error adding product to cart:', err);
+      }
+    });
+  }
+
   deleteProduct(id: any): void {
 
     this.confirmDialogSerive.confirm({
@@ -85,6 +106,11 @@ export class ProductsComponent implements OnInit {
     })
 
 
+  } 
+
+
+  goToCart(){
+    this.router.navigate(['/cart']);
   }
 
 
