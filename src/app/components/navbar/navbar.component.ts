@@ -1,35 +1,45 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-logo:String = "Stroll @ The Markcet "
-goToContact() {
-    this.router.navigate(['/contact'])
+
+  isLoggedIn(): boolean {
+  return !!localStorage.getItem('authToken');
 }
 
-  constructor(private router:Router){} 
+  logOut():void {
+    localStorage.removeItem("authToken");
+    this.router.navigate(['/login']);
+  }
+  logo: String = "Stroll @ The Markcet "
+  goToContact() {
+    this.router.navigate(['/contact'])
+  }
 
-  goToProducts(){
+  constructor(private router: Router) { }
+
+  goToProducts() {
     this.router.navigate(['/products'])
-  } 
+  }
 
-    goToLogin(){
+  goToLogin() {
     this.router.navigate(['/login'])
   }
 
-   goToHomePage(){
+  goToHomePage() {
     this.router.navigate(['/homepage'])
   }
 
-  goToAbout(){
+  goToAbout() {
     this.router.navigate(['/about'])
   }
-  goToService(){
+  goToService() {
     this.router.navigate(['/service'])
   }
 

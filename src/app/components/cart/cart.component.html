@@ -1,8 +1,13 @@
-    <app-navbar> </app-navbar>
+<app-navbar> </app-navbar>
 
 <div class="cart-container">
   <h2>Your Shopping Cart</h2>
-  
+
+  <div class="cart-total">
+    <h4>Total:</h4>
+    <span class="total-amount">{{ totalPrice | currency:'$' }}</span>
+  </div>
+
   <div *ngIf="isLoading" class="loading-message">
     Loading your cart...
   </div>
@@ -16,41 +21,42 @@
   </div>
 
   <div *ngIf="!isLoading && cartItems.length > 0" class="cart-items">
-   <div class="product-grid">
-    <div *ngFor="let product of cartItems" class="product-card fadeIn-high">
-      <div class="product-badge" *ngIf="+product.rating >= 4">BESTSELLER</div>
-      <div class="product-image-container">
-        <img [src]="product.productImage" [alt]="product.productName" class="product-image">
-      </div>
-      <div class="product-content">
-        <div class="product-category">{{product.productType}}</div>
-        <h3 class="product-title">{{product.productName}}</h3>
-        <span class="product-price">${{product.productPrice}}</span>
-
-        <p class="product-description">{{product.productDescription}}</p>
-
-        <div class="product-rating">
-          <div class="stars">
-            @for (star of product.rating + 1; track $index) {
-            <span>
-              <svg class="star" [class.filled]="product.rating" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-              </svg>
-            </span>
-            }
-          </div>
-          <span class="rating-value">{{product.rating}}</span>
+    <div class="product-grid">
+      <div *ngFor="let product of cartItems" class="product-card fadeIn-high">
+        <div class="product-badge" *ngIf="+product.rating >= 4">BESTSELLER</div>
+        <div class="product-image-container">
+          <img [src]="product.productImage" [alt]="product.productName" class="product-image">
         </div>
+        <div class="product-content">
+          <div class="product-category">{{product.productType}}</div>
+          <h3 class="product-title">{{product.productName}}</h3>
+          <span class="product-price">${{product.productPrice}}</span>
 
-        <div class="product-footer">
+          <p class="product-description">{{product.productDescription}}</p>
 
-          <button class="delete-btn" (click)="deleteProductFromCartById(product.id)">
-            🗑 Delete
-          </button>
+          <div class="product-rating">
+            <div class="stars">
+              @for (star of product.rating + 1; track $index) {
+              <span>
+                <svg class="star" [class.filled]="product.rating" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24">
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+              </span>
+              }
+            </div>
+            <span class="rating-value">{{product.rating}}</span>
+          </div>
+
+          <div class="product-footer">
+
+            <button class="delete-btn" (click)="deleteProductFromCartById(product.id)">
+              🗑 Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
   </div>
 </div>

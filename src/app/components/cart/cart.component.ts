@@ -39,11 +39,11 @@ export class CartComponent implements OnInit {
 loadCartItems(): void {
   this.isLoading = true;
   this.errorMessage = '';
-
   this.registrationService.getAllProductsFromCart().subscribe({
     next: (items: any) => {
       this.cartItems = items;
       this.calculateTotal();
+      console.log("the total price is : " , this.totalPrice )
       this.isLoading = false;
     },
     error: (err) => {
@@ -62,7 +62,7 @@ loadCartItems(): void {
 
   calculateTotal(): void {
     this.totalPrice = this.cartItems.reduce(
-      (total, item) => total + (item.productPrice || 0), 0
+      (total, item) => total + Number(item.productPrice || 0), 0
     );
   }
 

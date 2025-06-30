@@ -1,11 +1,19 @@
 <nav>
-   
 
-  <a (click)="goToHomePage()" style="--i: 0">Home</a>
-  <a (click)="goToAbout()" style="--i: 1">About</a>
-  <a (click)="goToProducts()" style="--i: 2">Products</a>
-  <a (click)="goToService()" style="--i: 3">Service</a>
-  <a (click)="goToContact()" style="--i: 4">Contact</a> 
-  <a (click)="goToLogin()" style="--i: 5" >Login</a> 
+<div class="text-logo">
+  <span class="logo-text">yamen amjed </span>
+</div>
 
+  <div class="nav-center">
+    <a (click)="goToAbout()" style="--i: 1">About</a>
+    <a (click)="goToProducts()" style="--i: 2">Products</a>
+    <a (click)="goToService()" style="--i: 3">Service</a>
+    <a (click)="goToLogin()" style="--i: 5">Login</a>
+    <a (click)="goToContact()" style="--i: 4">Contact</a>
+
+  </div>
+
+  <div class="nav-right" *ngIf="isLoggedIn()">
+    <a class="red-color" (click)="logOut()" style="--i: 6">Logout</a>
+  </div>
 </nav>

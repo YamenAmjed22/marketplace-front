@@ -16,10 +16,11 @@ nav {
   height: 80px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between; /* space between groups */
+  padding: 0 2rem;
   z-index: 1000;
-  padding: 2rem;
 }
+
 
 nav a {
   position: relative;
@@ -53,4 +54,32 @@ nav a:hover::before {
 
 nav a:hover {
   color: #000;
+}
+
+
+
+
+
+.text-logo {
+  text-align: center;
+  margin: 2rem 0 3rem;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .logo-text {
+    font-size: 1rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--light) 0%, var(--lighter) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 0.5rem;
+    
+  }
+
 }
