@@ -60,7 +60,7 @@
 .register-info {
   flex: 1;
   padding: 3rem;
-  background: linear-gradient(135deg, #6a5639, #694d22);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.568), var(--lighter));
   color: white;
   display: flex;
   flex-direction: column;
@@ -244,7 +244,7 @@
 
 .form-header .form-icon {
   font-size: 2.5rem;
-  color: var(--light);
+  color: var(--lighter);
   margin-bottom: 1rem;
 }
 
@@ -274,7 +274,7 @@
 
 .submit-button {
   padding: 0.75rem 2rem; 
-  background-color: var(--light);
+  background-color: var(--lighter);
 }
 
 .login-prompt {
@@ -284,7 +284,7 @@
 }
 
 .login-link {
-  color: var(--light);
+  color: var(--lighter);
   cursor: pointer;
   font-weight: 500;
 }
