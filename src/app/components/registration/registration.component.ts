@@ -15,6 +15,7 @@ import { NavbarComponent } from "../navbar/navbar.component";
     ReactiveFormsModule,
     ButtonModule,
     InputTextModule,
+    NavbarComponent
 ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'

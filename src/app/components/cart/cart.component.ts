@@ -36,23 +36,23 @@ export class CartComponent implements OnInit {
     this.loadCartItems();
   }
 
-  loadCartItems(): void {
-    this.isLoading = true;
-    this.errorMessage = '';
+loadCartItems(): void {
+  this.isLoading = true;
+  this.errorMessage = '';
 
-    this.registrationService.getAllProductsFromCart().subscribe({
-      next: (items: any) => {
-        this.cartItems = items;
-        this.calculateTotal();
-        this.isLoading = false;
-      },
-      error: (err) => {
-        this.errorMessage = 'Failed to load cart items. Please try again later.';
-        this.isLoading = false;
-        console.error('Error loading cart items:', err);
-      }
-    });
-  }
+  this.registrationService.getAllProductsFromCart().subscribe({
+    next: (items: any) => {
+      this.cartItems = items;
+      this.calculateTotal();
+      this.isLoading = false;
+    },
+    error: (err) => {
+      this.errorMessage = 'Failed to load cart items. Please try again later.';
+      this.isLoading = false;
+      console.error('Error loading cart items:', err);
+    }
+  });
+}
 
   removeItem(item: any): void {
     this.cartItems = this.cartItems.filter(cartItem => cartItem.id !== item.id);

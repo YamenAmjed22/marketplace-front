@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.';
 
@@ -53,20 +53,28 @@ export class RegistrationService {
     }
 
     addProductToTheCart(addedProduct: any) {
-        return this.http.post(this.apiUrl + "/MyCart", addedProduct)
+        const token = localStorage.getItem('authToken'); // or get from AuthService
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`
+        });
+        return this.http.post(this.apiUrl + "/MyCart", addedProduct, { headers });
+
     }
 
     getAllProductsFromCart() {
-        return this.http.get(this.apiUrl + "/MyCart");
+        const token = localStorage.getItem('authToken'); // or get it from AuthService
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`
+        });
+        return this.http.get(this.apiUrl + "/MyCart", { headers });
     }
-    
-    deleteProductFromCartById(id:any){
-        return this.http.delete(this.apiUrl  + "/MyCart/"+ `${id}`);
 
+    deleteProductFromCartById(id: any) {
+        const token = localStorage.getItem('authToken'); // or get from AuthService
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`
+        });
+        return this.http.delete(this.apiUrl + "/MyCart/" + id, { headers });
     }
-
-
-
-
 
 }

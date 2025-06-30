@@ -9,6 +9,7 @@ import { AboutComponent } from './components/about/about.component';
 import { AddNewProductComponent } from './components/add-new-product/add-new-product.component';
 import { ServiceComponent } from './components/servicePage/service.component';
 import { CartComponent } from './components/cart/cart.component';
+import { AuthGuard } from './components/auth.guard';
 
 export const routes: Routes = [
     {
@@ -24,30 +25,43 @@ export const routes: Routes = [
         component: LoginComponent
     },
     {
-        path:'homepage',
-        component:HomePageComponent
-    },{
-        path:'products',
-        component:ProductsComponent
+        path: 'homepage',
+        component: HomePageComponent,
+        canActivate: [AuthGuard]
+    }, {
+        path: 'products',
+        component: ProductsComponent,
+        canActivate: [AuthGuard]
+
     },
     {
-        path:'contact',
-        component:ContactUsComponent
+        path: 'contact',
+        component: ContactUsComponent,
+        canActivate: [AuthGuard]
+
     },
     {
-        path:'about',
-        component:AboutComponent
+        path: 'about',
+        component: AboutComponent,
+        canActivate: [AuthGuard]
+
     },
     {
-        path:'addProducts', 
-        component:AddNewProductComponent
+        path: 'addProducts',
+        component: AddNewProductComponent,
+        canActivate: [AuthGuard]
+
     },
     {
-        path:'service',
-        component:ServiceComponent
-    },{
-        path:'cart',
-        component:CartComponent
+        path: 'service',
+        component: ServiceComponent,
+        canActivate: [AuthGuard]
+
+    }, {
+        path: 'cart',
+        component: CartComponent,
+        canActivate: [AuthGuard]
+
     }
 
 ];

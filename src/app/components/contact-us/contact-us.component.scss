@@ -59,7 +59,7 @@
   height: 100%;
   backdrop-filter: blur(2px);
   z-index: 1;
-  background: linear-gradient(204deg, #594529, #1a1a1a) !important;
+  background-color: black;
 
 }
 
@@ -72,17 +72,18 @@
   overflow: hidden;
   position: relative;
   z-index: 2;
+  background: var(--surface-card);
 }
 
 /* Contact Info Section */
 .contact-info {
   flex: 1;
   padding: 3rem;
-  margin-top: 8%;
   background: linear-gradient(135deg,
       var(--lighter),
       var(--light));
   color: white;
+  border-top-right-radius: 200px;
 
 }
 
@@ -169,7 +170,7 @@
   flex: 1;
   padding: 3rem;
   margin-top: 8%;
-  background-color: rgba(0, 0, 0, 0.875);
+  border-top-right-radius: 40px;
 }
 
 .form-header {
@@ -347,16 +348,19 @@ textarea.p-inputtextarea {
 
 .inputTextStyle {
   height: 30px;
-  padding-left: 4px; 
-  border-radius: 1px; 
-  border : solid var(--light) 2px;
-  background-color: var(--lighter); 
+  padding-left: 4px;
+  border-radius: 1px;
+  border: solid var(--light) 2px;
+  background-color: var(--lighter);
   color: #1a1a1a;
-} 
+}
 
 .inputTextStyle::placeholder {
-  color: black;       /* Neon Cyan Example */
-  opacity: 1;           /* Fully visible */
-  font-style: normal;   /* Optional */ 
+  color: black;
+  /* Neon Cyan Example */
+  opacity: 1;
+  /* Fully visible */
+  font-style: normal;
+  /* Optional */
   font-weight: 500
 }
