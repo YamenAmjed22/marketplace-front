@@ -8,6 +8,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
+goToRegistration() {
+    this.router.navigate(['']);
+
+}
 
   isLoggedIn(): boolean {
   return !!localStorage.getItem('authToken');

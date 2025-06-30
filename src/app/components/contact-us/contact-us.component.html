@@ -9,45 +9,65 @@
   </div>
 
   <div class="contact-content">
-    <!-- Left side - Contact info -->
+    <!-- Left side - Welcome info -->
     <div class="contact-info">
       <div class="info-content">
-        <h2>Get in Touch</h2>
-        <p class="subtitle">We'd love to hear from you! Reach out through any of these channels.</p>
-        
-        <div class="contact-methods">
-          <div class="contact-method">
-            <div>
-              <div class="title-icon-container">
-                <i class="pi pi-map-marker"></i>
-                <h4>My Location</h4>
-              </div>
-              <p>Al Ameed Coffe Gardens<br>Sport city circle , Amman </p>
+        <div class="welcome-header">
+          <h2>We're Here to Help</h2>
+          <p class="subtitle">Reach out to our team for any questions or support you might need</p>
+        </div>
+
+        <div class="illustration-container">
+          <div class="floating-icons">
+            <i class="pi pi-headset floating-icon-1"></i>
+            <i class="pi pi-envelope floating-icon-2"></i>
+            <i class="pi pi-map-marker floating-icon-3"></i>
+          </div>
+        </div>
+
+        <div class="contact-benefits">
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="pi pi-clock"></i>
+            </div>
+            <div class="benefit-text">
+              <h4>Quick Response</h4>
+              <p>Our team typically responds within 24 hours</p>
             </div>
           </div>
-          
-          <div class="contact-method">
-            <div>
-              <div class="title-icon-container">
-                <i class="pi pi-envelope"></i>
-                <h4>Email Me</h4>
-              </div>
-              <p>{{email}}</p>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="pi pi-shield"></i>
             </div>
-          </div> 
-          
-          <div class="contact-method">
-            <div>
-              <div class="title-icon-container">
-                <i class="pi pi-phone"></i>
-                <h4>Call Me</h4>
-              </div>
-              <p>962792960177<br>sun-thir, 9am-5pm </p>
+            <div class="benefit-text">
+              <h4>Secure Communication</h4>
+              <p>All your messages are encrypted and protected</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="pi pi-users"></i>
+            </div>
+            <div class="benefit-text">
+              <h4>Expert Support</h4>
+              <p>Our specialists are ready to assist you</p>
             </div>
           </div>
         </div>
-        
- 
+      </div>
+
+      <div class="social-links">
+        <p>Connect with us:</p>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/yamenamjed/" target="_blank" aria-label="LinkedIn" class="social-icon">
+            <i class="pi pi-linkedin"></i>
+          </a>
+          <a href="https://github.com/YamenAmjed22" target="_blank" aria-label="GitHub" class="social-icon">
+            <i class="pi pi-github"></i>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -64,7 +84,7 @@
           <!-- Name -->
           <div class="form-field">
             <label for="name">Name <span>*</span></label>
-            <input id="name" class = "inputTextStyle" type="text" pInputText formControlName="name" placeholder="Your name" />
+            <input id="name" class="inputTextStyle" type="text" pInputText formControlName="name" placeholder="Your name" />
             <small *ngIf="submitted && contactForm.get('name')?.invalid" class="error-message">
               <i class="pi pi-exclamation-circle"></i> Name is required
             </small>
@@ -73,7 +93,7 @@
           <!-- Email -->
           <div class="form-field">
             <label for="email">Email <span>*</span></label>
-            <input id="email" class = "inputTextStyle" type="email" pInputText formControlName="email" placeholder="your.email@example.com" />
+            <input id="email" class="inputTextStyle" type="email" pInputText formControlName="email" placeholder="your.email@example.com" />
             <small *ngIf="submitted && contactForm.get('email')?.invalid" class="error-message">
               <i class="pi pi-exclamation-circle"></i> Valid email is required
             </small>
@@ -82,7 +102,7 @@
           <!-- Subject -->
           <div class="form-field full-width">
             <label for="subject">Subject</label>
-            <input id="subject" class = "inputTextStyle" type="text" pInputText formControlName="subject" placeholder="What's this about?" />
+            <input id="subject" class="inputTextStyle" type="text" pInputText formControlName="subject" placeholder="What's this about?" />
           </div>
 
           <!-- Message -->
