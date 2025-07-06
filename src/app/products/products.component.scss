@@ -20,8 +20,6 @@ $transition: all 0.3s ease;
 
 // Base styles
 .products-page {
-    max-width: 1200px;
-    margin: 4rem auto;
     padding: 2rem 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: $text-color;
@@ -38,13 +36,26 @@ $transition: all 0.3s ease;
         margin-bottom: 0.5rem;
     }
 
-    .page-subtitle {
-        font-size: 1.1rem;
-        color: $light-text;
+    
+}
+.top-message{
+    font-size: 4rem;
+    width: 150%; 
+    margin-bottom: -20px; 
+    justify-content: center;
+    display: flex;
+}
+
+.page-subtitle {
+        font-size: 2rem;
+        color: var(--light);
+        width: 150%; 
+        justify-content: center; 
+        display: flex; 
+        margin-bottom: 40px;
 
 
     }
-}
 
 // Filter section
 .filter-section {
@@ -70,14 +81,12 @@ $transition: all 0.3s ease;
     position: relative;
 
     input {
+        border: 3px solid var(--light);
         width: 100%;
         padding: 0.8rem 1rem 0.8rem 2.5rem;
-        border: 3px solid rgba(82, 69, 31, 0.662745098) !important ;
-        border-radius: 50px;
+        border-radius: 20px;
         font-size: 1rem;
-        transition: $transition;
-        box-shadow: $shadow;
-        background-color: var(--light) !important;
+        background-color: rgba(8, 6, 6, 0.486) !important;
 
         &:focus {
             outline: none;
@@ -110,12 +119,10 @@ $transition: all 0.3s ease;
     }
 
     .filter-select {
-        padding: 0.8rem 1rem;
-        border: 1px solid $border-color;
-        border-radius: 8px;
+        padding: 0.8rem 1.5rem;
+        border-radius: 34px;
         background-color: var(--light);
         cursor: pointer;
-        font-size: 1rem;
         transition: $transition;
         box-shadow: $shadow;
         color: var(--secondary-color);
@@ -166,7 +173,8 @@ $transition: all 0.3s ease;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
-    margin-top: 2rem;
+    margin: 2rem 2rem;  
+
 }
 
 // Product card
@@ -220,10 +228,11 @@ $transition: all 0.3s ease;
 }
 
 .product-content {
+    background-color: black;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex-grow: 1; 
 }
 
 .product-category {
@@ -239,7 +248,7 @@ $transition: all 0.3s ease;
     font-size: 1.2rem;
     font-weight: 700;
     margin: 0 0 0.8rem 0;
-    color: $text-color;
+    color: white;
     line-height: 1.3;
 }
 
@@ -275,7 +284,7 @@ $transition: all 0.3s ease;
     .rating-value {
         font-size: 0.9rem;
         font-weight: 600;
-        color: $text-color;
+        color: white;
     }
 }
 
@@ -336,70 +345,186 @@ $transition: all 0.3s ease;
 
 
 .shop-now-btn {
-            padding: 12px 35px;
-            background-color: transparent;
-            border: 2px solid var(--lighter);
-            border-radius: 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease; 
-            color: var(--light);
+    padding: 12px 35px;
+    background-color: transparent;
+    border: 2px solid var(--lighter);
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--light);
 
-            &:hover {
-                background-color: var(--light);
-                color: white; 
-                
+    &:hover {
+        background-color: var(--light);
+        color: white;
 
-            }
-        }
+
+    }
+}
 
 
 
 
 .delete-btn {
-  background-color: #ff4d4f; /* bright red */
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(255, 77, 79, 0.2);
+    background-color: #ff4d4f;
+    /* bright red */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 77, 79, 0.2);
 }
 
 .delete-btn:hover {
-  background-color: #d9363e;
-  box-shadow: 0 6px 12px rgba(217, 54, 62, 0.3);
-  transform: scale(1.03);
+    background-color: #d9363e;
+    box-shadow: 0 6px 12px rgba(217, 54, 62, 0.3);
+    transform: scale(1.03);
 }
 
 .delete-btn:active {
-  transform: scale(0.98);
-  box-shadow: 0 2px 4px rgba(217, 54, 62, 0.2);
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(217, 54, 62, 0.2);
 }
 
 
 
 .Cart {
-  background-color: var(--light); /* teal */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, transform 0.2s ease;
+    background-color: var(--light);
+    /* teal */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .Cart:hover {
-  background-color: #0f766e;
-  transform: translateY(-2px);
+    background-color: #0f766e;
+    transform: translateY(-2px);
 }
 
 .Cart:active {
-  transform: scale(0.98);
+    transform: scale(0.98);
 }
+
+
+
+.hero-with-bg {
+    position: relative;
+    height: 100vh;
+    /* Full viewport height */
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+    margin-top: 0;
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        /* Semi-transparent overlay */
+        z-index: 1;
+    }
+
+    .overlay-content {
+        position: absolute;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+        left: 150px;
+        top: 228px;
+    }
+
+    .hero-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+
+
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+        padding: 0 20px;
+        max-width: 800px;
+        animation: fadeInUp 1s ease-out;
+        margin-top: 18%;
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+            color: var(--light);
+
+            @media (max-width: 768px) {
+                font-size: 2.5rem;
+            }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+
+            @media (max-width: 768px) {
+                font-size: 1.2rem;
+            }
+        }
+
+    }
+    .shop-now-btn {
+        padding: 15px 40px;
+        background-color: transparent;
+        border: 2px solid var(--lighter);
+        border-radius: 30px;
+        font-size: 1.2rem;
+        color: var(--light);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+
+        &:hover {
+            background-color: var(--light);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            color: black;
+        }
+    }
+        
+} 
+
+.the-product-title {
+            font-weight: bold;
+            color: var(--light);
+            padding-bottom: 1rem;
+        }

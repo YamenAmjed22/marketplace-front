@@ -6,12 +6,13 @@ import { NavbarComponent } from "../components/navbar/navbar.component";
 import { RegistrationService } from '../Services/registration.service';
 import { Product } from '../models/product.interface';
 import { ButtonModule, ConfirmationDialogService, NotificationService } from 'nzrm-ng';
+import { FooterComponent } from "../components/footer/footer.component";
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
-  imports: [FormsModule, CommonModule, NavbarComponent],
+  imports: [FormsModule, CommonModule, NavbarComponent, FooterComponent],
   standalone: true
 })
 export class ProductsComponent implements OnInit {
@@ -21,6 +22,8 @@ export class ProductsComponent implements OnInit {
   categories: string[] = ['All', 'Electronics', 'Fitness', 'Accessories', 'Home'];
   selectedCategory = 'All';
   searchTerm = '';
+  isImgLoaded: boolean = false;
+
 
   constructor(private router: Router, private registrationService: RegistrationService, private confirmDialogSerive: ConfirmationDialogService) { }
 
@@ -127,6 +130,10 @@ export class ProductsComponent implements OnInit {
 
   //   return stars;
   // }
-
+    onLoad() {
+    setTimeout(() => {
+      this.isImgLoaded = true;
+    }, 700);
+  }
 
 }

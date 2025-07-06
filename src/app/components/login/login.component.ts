@@ -4,11 +4,10 @@ import { CommonModule } from '@angular/common';
 import { NotificationService } from 'nzrm-ng';
 import { RegistrationService } from '../../Services/registration.service';
 import { Router } from '@angular/router';
-import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule, NavbarComponent],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

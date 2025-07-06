@@ -1,13 +1,29 @@
 <app-navbar></app-navbar>
-<div class="products-page">
-  <div class="page-header">
-    <h1 class="page-title">Discover Our Products</h1>
+
+<section class="hero-with-bg">
+
+
+  <div class="hero-overlay"></div>
+
+  <div class="overlay-content">
+
+    <h1 class="top-message"> Discover Our Products </h1>
     <p class="page-subtitle">Find exactly what you're looking for</p>
     <button class="shop-now-btn" (click)="goToAddProducts()">Add New Product </button>
-
   </div>
 
 
+
+  <img src="./assets/images/cart-img.jpg" class="hero-image" alt="Marketplace background" loading="lazy"
+    (load)="onLoad()" [ngClass]="isImgLoaded ? 'fadeIn-high' : 'opacity-0'">
+  <div class="dark-overlay"></div>
+</section>
+<div class="products-page">
+  <div class="page-header"> 
+    <h1 class="the-product-title">
+      The Products
+    </h1>  
+  </div>
 
   <div class="filter-section">
     <div class="search-container">

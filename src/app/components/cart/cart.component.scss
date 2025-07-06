@@ -103,6 +103,8 @@
   }
 
   .empty-cart {
+    color: black; 
+    font-weight: bold;
     text-align: center;
     padding: 3rem 2rem;
     background-color: white;
@@ -114,7 +116,7 @@
     .empty-cart-icon {
       font-size: 3.5rem;
       margin-bottom: 1.5rem;
-      color: #cbd5e1;
+      color: red;
     }
 
     h3 {
