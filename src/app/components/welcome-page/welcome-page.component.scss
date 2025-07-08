@@ -1,0 +1,282 @@
+/* SCSS Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+.welcome-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  
+  .welcome-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,var(--lighter) 0%,black 100%);
+    z-index: -1;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('/assets/images/welcom-background.png') no-repeat center center;
+      background-size: cover;
+      opacity: 0.15;
+    }
+  }
+  
+  .welcome-content {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    color: white;
+    animation: fadeIn 0.8s ease-out;
+    
+    .welcome-header {
+      margin-bottom: 2.5rem;
+      
+      .greeting {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        animation: slideDown 0.6s ease-out;
+        
+        @media (max-width: 768px) {
+          font-size: 2.2rem;
+        }
+      }
+      
+      .sub-greeting {
+        font-size: 1.4rem;
+        font-weight: 300;
+        opacity: 0.9;
+        animation: slideDown 0.6s ease-out 0.2s forwards;
+        opacity: 0;
+        
+        @media (max-width: 768px) {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+  
+  .marketplace-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    animation: scaleIn 0.6s ease-out 0.4s forwards;
+    transform: scale(0.95);
+    opacity: 0;
+    
+    &:hover {
+      transform: translateY(-5px) scale(1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+    
+    .logo-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1rem;
+      
+      .logo {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin: 0;
+        position: relative;
+        z-index: 2;
+        background: linear-gradient(to right, #ffffff, #e0e0e0);
+        -webkit-background-clip: text;  
+        -webkit-text-fill-color: transparent;
+        text-shadow: none;
+        
+        @media (max-width: 768px) {
+          font-size: 2.8rem;
+        }
+      }
+      
+      .logo-decoration {
+        position: absolute;
+        width: 120%;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.3);
+        bottom: 5px;
+        left: -10%;
+        border-radius: 50%;
+        z-index: 1;
+        filter: blur(8px);
+      }
+    }
+    
+    .tagline {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+      opacity: 0.95;
+      line-height: 1.4;
+      
+      @media (max-width: 768px) {
+        font-size: 1.2rem;
+      }
+    }
+    
+    .description {
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+      font-weight: 300;
+      opacity: 0.9;
+      
+      @media (max-width: 768px) {
+        font-size: 1rem;
+      }
+    }
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    
+    .action-button {
+      padding: 0.9rem 2.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 0.8rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-width: 180px;
+      justify-content: center;
+      
+      mat-icon {
+        transition: transform 0.3s ease;
+      }
+      
+      &:hover {
+        transform: translateY(-3px);
+        
+        mat-icon {
+          transform: translateX(3px);
+        }
+      }
+      
+      &.register-btn {
+        background: linear-gradient(135deg,var(--light) 0%,var(--lighter) 100%);
+        box-shadow: 0 4px 15px white;
+      }
+      
+      &.login-btn {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.126);
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.25);
+        }
+      }
+    }
+  }
+  
+  .features-scroll {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+    animation: fadeIn 0.6s ease-out 0.8s forwards;
+    opacity: 0;
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2rem;
+      font-weight: 300;
+      transition: all 0.3s ease;
+      
+      mat-icon {
+        font-size: 1.2rem;
+      }
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+      }
+    }
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .welcome-container {
+    padding: 1.5rem;
+    
+    .marketplace-card {
+      padding: 2rem 1.5rem;
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+      gap: 1rem;
+      
+      .action-button {
+        width: 100%;
+      }
+    }
+    
+    .features-scroll {
+      gap: 1rem;
+      
+      .feature-item {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

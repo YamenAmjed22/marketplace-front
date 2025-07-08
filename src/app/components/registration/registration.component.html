@@ -84,7 +84,7 @@
         <div class="form-grid">
           <!-- Username -->
           <div class="form-field">
-            <label for="username">Username <span>*</span></label>
+            <label for="username" class="labelStyle">Username <span>*</span></label>
             <input id="username" class="inputTextStyle" type="text" pInputText formControlName="userName"
               placeholder="Choose a unique username" />
             <small *ngIf="submitted && registerForm.get('userName')?.invalid" class="error-message">
@@ -94,7 +94,7 @@
 
           <!-- Password -->
           <div class="form-field">
-            <label for="password">Password <span>*</span></label>
+            <label for="password" class="labelStyle">Password <span>*</span></label>
             <input id="password" class="inputTextStyle" type="password" pInputText formControlName="password"
               placeholder="At least 8 characters" />
             <small *ngIf="submitted && registerForm.get('password')?.invalid" class="error-message">
@@ -104,7 +104,7 @@
 
           <!-- First Name -->
           <div class="form-field">
-            <label for="firstName">First Name <span>*</span></label>
+            <label for="firstName" class="labelStyle">First Name <span>*</span></label>
             <input id="firstName" class="inputTextStyle" type="text" pInputText formControlName="firstName"
               placeholder="Your first name" />
             <small *ngIf="submitted && registerForm.get('firstName')?.invalid" class="error-message">
@@ -114,14 +114,14 @@
 
           <!-- Last Name -->
           <div class="form-field">
-            <label for="lastName">Last Name</label>
+            <label for="lastName" class="labelStyle">Last Name</label>
             <input id="lastName" class="inputTextStyle" type="text" pInputText formControlName="lastName"
               placeholder="Your family name" />
           </div>
 
           <!-- Email -->
           <div class="form-field">
-            <label for="email">Email <span>*</span></label>
+            <label for="email" class="labelStyle">Email <span>*</span></label>
             <input id="email" class="inputTextStyle" type="email" pInputText formControlName="email"
               placeholder="your.email@example.com" />
             <small *ngIf="submitted && registerForm.get('email')?.invalid" class="error-message">
@@ -131,7 +131,7 @@
 
           <!-- Phone -->
           <div class="form-field">
-            <label for="phone">Phone <span>*</span></label>
+            <label for="phone" class="labelStyle">Phone <span>*</span></label>
             <input id="phone" class="inputTextStyle" type="text" pInputText formControlName="phone"
               placeholder="For important updates" />
             <small *ngIf="submitted && registerForm.get('phone')?.invalid" class="error-message">
@@ -141,7 +141,7 @@
 
           <!-- Address -->
           <div class="form-field full-width">
-            <label for="address">Address</label>
+            <label for="address" class="labelStyle">Address</label>
             <input id="address" class="inputTextStyle" type="text" pInputText formControlName="address"
               placeholder="Where can we find you?" />
           </div>

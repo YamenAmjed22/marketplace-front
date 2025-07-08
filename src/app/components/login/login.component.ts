@@ -61,7 +61,7 @@ export class LoginComponent {
   }
 
   goToRegister(){
-    this.router.navigate([''])
+    this.router.navigate(['/registration'])
   }
 
 

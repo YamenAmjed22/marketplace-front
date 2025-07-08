@@ -117,6 +117,7 @@
 .simple-products {
     padding: 0 20px 60px;
     text-align: center;
+    margin-top: 20px;
 
     h2 {
         font-size: 3rem;
@@ -127,6 +128,7 @@
         text-transform: uppercase;
         letter-spacing: 2px;
         position: relative;
+        margin-bottom: 70px;
     }
 
     .product-showcase {
@@ -219,7 +221,7 @@
         font-size: 3rem;
         font-weight: 300;
         margin-bottom: 30px;
-        color: white;
+        color: rgb(24, 23, 23);
     }
 
     .cta-btn {
@@ -236,7 +238,6 @@
             background-color: white;
             transform: translateY(-2px);
             color: black;
-            font-size: x-large;
             font-weight: 500;
 
 

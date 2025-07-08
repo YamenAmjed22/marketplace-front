@@ -264,6 +264,7 @@
 
 .inputTextStyle {
   width: 100%;
+  border-radius: 15px;
 }
 
 .submit-wrapper {
@@ -318,4 +319,9 @@
   .form-field.full-width {
     grid-column: span 1;
   }
+}
+
+
+.labelStyle{
+  margin-left: 6px;
 }

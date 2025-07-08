@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
 goToRegistration() {
-    this.router.navigate(['']);
+    this.router.navigate(['registration']);
 
 }
 
