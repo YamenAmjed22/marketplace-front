@@ -10,11 +10,12 @@ import { AddNewProductComponent } from './components/add-new-product/add-new-pro
 import { ServiceComponent } from './components/servicePage/service.component';
 import { CartComponent } from './components/cart/cart.component';
 import { AuthGuard } from './components/auth.guard';
+import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 
 export const routes: Routes = [
     {
         path: '',
-        component: RegistrationComponent
+        component: WelcomePageComponent
     },
     {
         path: 'checkotp',
@@ -23,6 +24,10 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent
+    },
+     {
+        path: 'registration',
+        component: RegistrationComponent
     },
     {
         path: 'homepage',

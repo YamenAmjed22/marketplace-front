@@ -5,14 +5,13 @@ import { Router } from '@angular/router';
 import { NavbarComponent } from "../components/navbar/navbar.component";
 import { RegistrationService } from '../Services/registration.service';
 import { Product } from '../models/product.interface';
-import { ButtonModule, ConfirmationDialogService, NotificationService } from 'nzrm-ng';
-import { FooterComponent } from "../components/footer/footer.component";
+import { ConfirmationDialogService, NotificationService } from 'nzrm-ng';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
-  imports: [FormsModule, CommonModule, NavbarComponent, FooterComponent],
+  imports: [FormsModule, CommonModule, NavbarComponent],
   standalone: true
 })
 export class ProductsComponent implements OnInit {
@@ -25,7 +24,7 @@ export class ProductsComponent implements OnInit {
   isImgLoaded: boolean = false;
 
 
-  constructor(private router: Router, private registrationService: RegistrationService, private confirmDialogSerive: ConfirmationDialogService) { }
+  constructor(private router: Router, private registrationService: RegistrationService, private confirmDialogSerive: ConfirmationDialogService,private noti:NotificationService) { }
 
   ngOnInit(): void {
     this.registrationService.getAllProducts().subscribe({
@@ -76,7 +75,7 @@ export class ProductsComponent implements OnInit {
     this.registrationService.addProductToTheCart(cartProduct).subscribe({
       next: () => {
         console.log('Product added to cart:', product.productName);
-        alert(`${product.productName} added to cart successfully!`);
+        this.noti.info("added"," Check The Cart , The Product Added  ")
       },
       error: (err) => {
         console.error('Error adding product to cart:', err);
@@ -130,6 +129,7 @@ export class ProductsComponent implements OnInit {
 
   //   return stars;
   // }
+
     onLoad() {
     setTimeout(() => {
       this.isImgLoaded = true;
