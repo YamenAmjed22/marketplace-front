@@ -91,7 +91,7 @@
           </button>
 
 
-          <button class="delete-btn" (click)="deleteProduct(product.id)">
+          <button class="delete-btn" (click)="deleteProduct(product.id)" *ngIf="isAdmin">
             🗑 Delete
           </button>
         </div>

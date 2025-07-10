@@ -22,7 +22,7 @@ export class ProductsComponent implements OnInit {
   selectedCategory = 'All';
   searchTerm = '';
   isImgLoaded: boolean = false;
-
+  isAdmin:boolean = true ;
 
   constructor(private router: Router, private registrationService: RegistrationService, private confirmDialogSerive: ConfirmationDialogService,private noti:NotificationService) { }
 
@@ -99,7 +99,8 @@ export class ProductsComponent implements OnInit {
             console.log('Product deleted successfully.');
           },
           error: (err) => {
-            console.error('Failed to delete product:', err);
+            this.isAdmin = false;
+            this.noti.error("Error","You are not have the permission to delete product just contact the admin on this email ***** to delete it ")
           }
         });
       } else {
