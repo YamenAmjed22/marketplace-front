@@ -32,7 +32,7 @@ export class ContactUsComponent {
     
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['yamen@mailinator.com', [Validators.required, Validators.email]],
       subject: [''],
       message: ['', Validators.required]
     });
