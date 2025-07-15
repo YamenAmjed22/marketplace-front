@@ -1,0 +1,76 @@
+.messages-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1565c0;
+    font-size: 24px;
+  }
+
+  .empty {
+    text-align: center;
+    font-style: italic;
+    color: #999;
+  }
+
+  .messages-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+
+  .message-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+
+    .subject {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    p {
+      margin: 4px 0;
+      font-size: 14px;
+      color: #555;
+
+      strong {
+        color: #000;
+      }
+    }
+
+    .message-text {
+      margin-top: 8px;
+      font-style: italic;
+      color: #444;
+    }
+  }
+}
+
+
+.delete-btn {
+    background-color: #ff4d4f;
+    /* bright red */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 77, 79, 0.2);
+    margin-top: 2rem;
+}

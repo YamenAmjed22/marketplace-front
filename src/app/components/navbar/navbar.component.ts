@@ -46,5 +46,8 @@ goToRegistration() {
   goToService() {
     this.router.navigate(['/service'])
   }
+  goToContactMessages(){
+    this.router.navigate(['contactusMessages'])
+  }
 
 }

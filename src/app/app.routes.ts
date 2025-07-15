@@ -11,6 +11,7 @@ import { ServiceComponent } from './components/servicePage/service.component';
 import { CartComponent } from './components/cart/cart.component';
 import { AuthGuard } from './components/auth.guard';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+import { ShowMessagesComponent } from './show-messages/show-messages.component';
 
 export const routes: Routes = [
     {
@@ -67,6 +68,9 @@ export const routes: Routes = [
         component: CartComponent,
         canActivate: [AuthGuard]
 
+    },{
+        path: 'contactusMessages',
+        component:ShowMessagesComponent
     }
 
 ];

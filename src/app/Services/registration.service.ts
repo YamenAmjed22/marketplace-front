@@ -77,4 +77,14 @@ export class RegistrationService {
         return this.http.delete(this.apiUrl + "/MyCart/" + id, { headers });
     }
 
+
+    getAllContactMessages() {
+        return this.http.get(this.apiUrl + "/contact");
+    } 
+
+    deleteContactMessage(id:any){
+        return this.http.delete(this.apiUrl + "/contact/" + `${id}`);
+
+    }
+
 }

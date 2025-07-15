@@ -1,0 +1,20 @@
+<div class="messages-container">
+  <h2>Contact Messages</h2>
+
+  <div *ngIf="!contactUs || contactUs.length === 0" class="empty">
+    No messages to show.
+  </div>
+
+  <div *ngIf="contactUs && contactUs.length > 0" class="messages-list">
+    <div class="message-card" *ngFor="let message of contactUs">
+      <h3 class="subject">{{ message.subject }}</h3>
+      <p><strong>Name:</strong> {{ message.name }}</p>
+      <p><strong>Email:</strong> {{ message.email }}</p>
+      <p class="message-text">{{ message.message }}</p>
+        <button class="delete-btn" (click)="deleteMessage(message.id)" *ngIf="isAdmin">
+            🗑 Delete
+          </button>
+    </div>
+   
+  </div>
+</div>
