@@ -63,14 +63,17 @@ export const routes: Routes = [
         component: ServiceComponent,
         canActivate: [AuthGuard]
 
-    }, {
+    },
+    {
         path: 'cart',
         component: CartComponent,
         canActivate: [AuthGuard]
 
-    },{
+    },
+    {
         path: 'contactusMessages',
-        component:ShowMessagesComponent
+        component:ShowMessagesComponent,
+        canActivate:[AuthGuard]
     }
 
 ];

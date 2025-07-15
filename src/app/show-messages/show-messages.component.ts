@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RegistrationService } from '../Services/registration.service';
 import { CommonModule } from '@angular/common';
 import { NotificationService } from 'nzrm-ng';
+import { NavbarComponent } from "../components/navbar/navbar.component";
 
 
 export interface ContactUs {
@@ -14,7 +15,7 @@ export interface ContactUs {
 
 @Component({
   selector: 'app-show-messages',
-  imports: [CommonModule],
+  imports: [CommonModule, NavbarComponent],
   templateUrl: './show-messages.component.html',
   styleUrl: './show-messages.component.scss'
 })
