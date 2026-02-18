@@ -2,29 +2,80 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', 'Lucida Sans', sans-serif;
 }
 
-
-
 nav {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* space between groups */
+  justify-content: space-between;
   padding: 0 2rem;
   z-index: 1000;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateY(0);
+  opacity: 1;
 }
 
+nav.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Logo */
+.text-logo {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1001;
+}
+
+.logo-text {
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(220deg, #ffffff, #e0e0e0, #000000);
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  animation: shine 3s linear infinite;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: -200% center;
+  }
+}
+
+/* Navigation Links Container */
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
 nav a {
   position: relative;
-  margin: 0 15px;
+  margin: 0 10px;
   padding: 10px 20px;
   color: #ffffff;
   text-decoration: none;
@@ -32,7 +83,8 @@ nav a {
   font-weight: 500;
   transition: color 0.3s ease;
   overflow: hidden;
-  cursor: alias
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 nav a::before {
@@ -56,49 +108,198 @@ nav a:hover {
   color: #000;
 }
 
-
-
-
-
-.text-logo {
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
+/* Right Side (Logout) */
+.nav-right {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  
-.logo-text {
-  font-size: 1.2rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 3px;
+}
 
-  /* Richer gradient with color instead of just black and white */
-  background: linear-gradient(220deg, #ffffff, #e0e0e0, #000000);
-  background-size: 200% auto;
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-
-  /* Subtle shadow for depth */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-
-  /* Optional: animated gradient for a dynamic look */
-  animation: shine 3s linear infinite;
-
+/* Hamburger Menu Button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
   position: relative;
-  padding-bottom: 0.5rem;
 }
 
-/* Keyframes for gradient animation */
-@keyframes shine {
-  0% {
-    background-position: 0% center;
+.hamburger span {
+  width: 100%;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(10.5px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-10.5px) rotate(-45deg);
+}
+
+/* Mobile Logout (hidden on desktop) */
+.mobile-logout {
+  display: none;
+}
+
+/* Responsive Breakpoints */
+
+/* Tablets and below */
+@media (max-width: 1024px) {
+  nav {
+    padding: 0 1.5rem;
   }
-  100% {
-    background-position: -200% center;
+
+  nav a {
+    margin: 0 8px;
+    padding: 8px 16px;
+    font-size: 0.95em;
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
   }
 }
 
+/* Mobile devices */
+@media (max-width: 768px) {
+  nav {
+    padding: 0 1rem;
+    height: 70px;
+  }
 
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-center {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0;
+    padding-top: 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .nav-center.mobile-open {
+    transform: translateX(0);
+  }
+
+  nav a {
+    width: 90%;
+    max-width: 400px;
+    margin: 0;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    font-size: 1.1em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  nav a::before {
+    border-radius: 0;
+  }
+
+  /* Hide desktop logout, show mobile logout */
+  .nav-right {
+    display: none;
+  }
+
+  .mobile-logout {
+    display: block;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1rem;
+  }
+
+  .logo-text {
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  nav {
+    padding: 0 0.75rem;
+    height: 65px;
+  }
+
+  .nav-center {
+    top: 65px;
+    height: calc(100vh - 65px);
+    padding-top: 1.5rem;
+  }
+
+  nav a {
+    padding: 0.9rem 1.2rem;
+    font-size: 1em;
+  }
+
+  .logo-text {
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+  }
+
+  .hamburger {
+    width: 26px;
+    height: 20px;
+  }
+
+  .hamburger span {
+    height: 2.5px;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(8.75px) rotate(45deg);
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-8.75px) rotate(-45deg);
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  nav {
+    padding: 0 0.5rem;
+    height: 60px;
+  }
+
+  .nav-center {
+    top: 60px;
+    height: calc(100vh - 60px);
+  }
+
+  .logo-text {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  nav a {
+    padding: 0.8rem 1rem;
+    font-size: 0.95em;
+  }
 }

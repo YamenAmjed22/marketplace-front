@@ -22,9 +22,9 @@ export class ProductsComponent implements OnInit {
   selectedCategory = 'All';
   searchTerm = '';
   isImgLoaded: boolean = false;
-  isAdmin:boolean = true ;
+  isAdmin: boolean = true;
 
-  constructor(private router: Router, private registrationService: RegistrationService, private confirmDialogSerive: ConfirmationDialogService,private noti:NotificationService) { }
+  constructor(private router: Router, private registrationService: RegistrationService, private confirmDialogSerive: ConfirmationDialogService, private noti: NotificationService) { }
 
   ngOnInit(): void {
     this.registrationService.getAllProducts().subscribe({
@@ -75,7 +75,7 @@ export class ProductsComponent implements OnInit {
     this.registrationService.addProductToTheCart(cartProduct).subscribe({
       next: () => {
         console.log('Product added to cart:', product.productName);
-        this.noti.info("added"," Check The Cart , The Product Added  ")
+        this.noti.info("added", " Check The Cart , The Product Added  ")
       },
       error: (err) => {
         console.error('Error adding product to cart:', err);
@@ -100,7 +100,7 @@ export class ProductsComponent implements OnInit {
           },
           error: (err) => {
             this.isAdmin = false;
-            this.noti.error("Error","You are not have the permission to delete product just contact the admin on this email ***** to delete it ")
+            this.noti.error("Error", "You are not have the permission to delete product just contact the admin on this email ***** to delete it ")
           }
         });
       } else {
@@ -109,10 +109,10 @@ export class ProductsComponent implements OnInit {
     })
 
 
-  } 
+  }
 
 
-  goToCart(){
+  goToCart() {
     this.router.navigate(['/cart']);
   }
 
@@ -131,7 +131,7 @@ export class ProductsComponent implements OnInit {
   //   return stars;
   // }
 
-    onLoad() {
+  onLoad() {
     setTimeout(() => {
       this.isImgLoaded = true;
     }, 700);
