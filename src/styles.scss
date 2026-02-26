@@ -1,8 +1,6 @@
+/* Global styles from nzrm-ng */
 @use 'nzrm-ng/src/lib/styles/global-styles.scss';
-@import 'primeicons/primeicons.css';
-@import "primeflex/primeflex.css";
-@import "primeng/resources/themes/mdc-dark-deeppurple/theme.css";
-@import "primeng/resources/primeng.css";
+
 
 :root {
     --primary-color: #222831;

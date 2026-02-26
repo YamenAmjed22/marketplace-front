@@ -1,65 +1,180 @@
-<div class="backGround fadeIn-high">
+<app-navbar></app-navbar>
 
-    <main class="elegant-container">
-            <app-navbar></app-navbar>
+<div class="home-page-wrapper">
 
-        <!-- Hero Section with Background Image -->
-        <!-- In your component template, modify the hero section like this -->
-        <section class="hero-with-bg">
-            <div class="hero-overlay"></div>
-            <img
-            src="./assets/images/wallpaperForMarcketPlace-min.jpg"
-            class="hero-image" alt="Marketplace background"
-            loading="lazy"
-            (load)="onLoad()"
-            [ngClass]="isImgLoaded ? 'fadeIn-high' : 'opacity-0'"
-            >
-            <div class="dark-overlay"></div>
-            <div *ngIf="isImgLoaded" class="hero-content" [ngClass]="{'fadeIn-text-high fadeUp': isImgLoaded}">
-                <h1>Discover Beautiful Finds</h1>
-                <p class="subtitle">Curated collection of quality products</p>
-                <button class="shop-now-btn" (click)="goToProducts()">Browse Collection</button>
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero-section">
+        <div class="hero-bg">
+            <div class="circle c1"></div>
+            <div class="circle c2"></div>
+            <div class="circle c3"></div>
+        </div>
+        <img src="./assets/images/wallpaperForMarcketPlace-min.jpg" class="hero-image" alt="Marketplace background"
+            loading="lazy" (load)="onLoad()" [ngClass]="isImgLoaded ? 'hero-img-visible' : 'opacity-0'">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="pi pi-star-fill"></i>
+                <span>Premium Marketplace</span>
             </div>
-        </section>
+            <h1>Discover <span class="gradient-text">Beautiful</span> Finds</h1>
+            <p class="subtitle">Curated collection of quality products, handpicked just for you.</p>
+            <div class="hero-actions">
+                <button class="primary-btn" (click)="goToProducts()">
+                    <i class="pi pi-shopping-bag"></i>
+                    Browse Collection
+                </button>
+                <button class="glass-btn" (click)="goToProducts()">
+                    View All Deals
+                </button>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="stat-count">500+</span>
+                    <span class="stat-label">Products</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="stat-count">50+</span>
+                    <span class="stat-label">Brands</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="stat-count">10K+</span>
+                    <span class="stat-label">Happy Buyers</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-dot"></div>
+        </div>
+    </section>
 
-        <!-- Simple Product Showcase -->
-        <section class="simple-products">
-            <h2>The last added Items</h2>
+    <!-- ===== FEATURES SECTION ===== -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <i class="pi pi-truck"></i>
+                    </div>
+                    <h3>Free Delivery</h3>
+                    <p>On all orders over $50. Fast and reliable shipping to your door.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <i class="pi pi-shield"></i>
+                    </div>
+                    <h3>Secure Payment</h3>
+                    <p>Multiple secure payment options. Your financial data stays safe.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <i class="pi pi-refresh"></i>
+                    </div>
+                    <h3>Easy Returns</h3>
+                    <p>30-day hassle-free return policy on all products.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <i class="pi pi-headphones"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our support team is always ready to help you out.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCT SHOWCASE SECTION ===== -->
+    <section class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow">Fresh Picks</span>
+                <h2>Latest <span class="gradient-text">Items</span></h2>
+                <p class="section-subtext">Explore our newest arrivals fresh off the shelf.</p>
+            </div>
             <div class="product-showcase">
-                <div class="product-card" *ngFor="let product of featuredItems">
+                <div class="product-card" *ngFor="let product of featuredItems"
+                    (click)="navigateToProduct(product.productId)">
+                    <div class="product-badge">New</div>
                     <div class="product-image">
                         <img [src]="product.productImage" [alt]="product.productName">
+                        <div class="product-overlay">
+                            <button class="view-btn">
+                                <i class="pi pi-eye"></i> Quick View
+                            </button>
+                        </div>
                     </div>
                     <div class="product-info">
                         <h3>{{ product.productName }}</h3>
-                        <div class="stars ">
-                            <Span class="stars-number">{{product.rating}}</Span>
-
-                            @for (star of product.rating + 1; track $index) {
-                            <span>
-                                <svg class="star" [class.filled]="product.rating" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                                </svg>
-                            </span>
-                            }
+                        <div class="stars">
+                            <i class="pi pi-star-fill" *ngFor="let s of [1,2,3,4,5]"
+                                [class.active]="s <= product.rating"></i>
+                            <span class="stars-number">({{ product.rating }})</span>
                         </div>
-                        <p class="price">{{ product.productPrice | currency }}</p>
-
+                        <div class="product-footer">
+                            <p class="price">{{ product.productPrice | currency }}</p>
+                            <button class="add-cart-btn" (click)="$event.stopPropagation(); goToProducts()">
+                                <i class="pi pi-shopping-cart"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="section-cta">
+                <button class="primary-btn" (click)="goToProducts()">View All Products <i
+                        class="pi pi-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
 
+    <!-- ===== HOW IT WORKS SECTION ===== -->
+    <section class="how-it-works">
+        <div class="container text-center">
+            <span class="eyebrow">Simple Process</span>
+            <h2>How It <span class="gradient-text">Works</span></h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">01</div>
+                    <div class="step-icon"><i class="pi pi-search"></i></div>
+                    <h3>Browse</h3>
+                    <p>Explore thousands of curated products from top brands.</p>
+                </div>
+                <div class="step-connector"><i class="pi pi-arrow-right"></i></div>
+                <div class="step-card">
+                    <div class="step-num">02</div>
+                    <div class="step-icon"><i class="pi pi-shopping-cart"></i></div>
+                    <h3>Add to Cart</h3>
+                    <p>Select your items and add them to your secure cart.</p>
+                </div>
+                <div class="step-connector"><i class="pi pi-arrow-right"></i></div>
+                <div class="step-card">
+                    <div class="step-num">03</div>
+                    <div class="step-icon"><i class="pi pi-check-circle"></i></div>
+                    <h3>Enjoy</h3>
+                    <p>Fast delivery straight to your door. Enjoy your purchase!</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Simple Call to Action -->
-        <section class="simple-cta">
-            <h2>Ready to find your perfect item?</h2>
-            <button class="cta-btn" (click)="goToProducts()">Start Shopping</button>
-            
-        </section> 
+    <!-- ===== CTA SECTION ===== -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <div class="cta-bg-circle cta-c1"></div>
+                <div class="cta-bg-circle cta-c2"></div>
+                <div class="cta-content">
+                    <span class="eyebrow">Don't Wait</span>
+                    <h2>Ready to find your <span class="gradient-text">perfect item?</span></h2>
+                    <p>Join thousands of satisfied customers and discover your next favourite product.</p>
+                    <div class="cta-actions">
+                        <button class="primary-btn" (click)="goToProducts()">Start Shopping Now</button>
+                        <button class="glass-btn" (click)="goToProducts()">Explore Deals</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        
-    </main>
 </div>

@@ -1,84 +1,133 @@
-<div class="add-product-container">
+<app-navbar></app-navbar>
 
-  <div class="add-product-card">
-    <h2>Add New Product</h2>
+<div class="add-product-wrapper">
+  <!-- Background decoration -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
 
-    <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()" novalidate>
-      <div class="form-grid">
-
-        <!-- Product Name -->
-        <div class="form-field">
-          <label for="productName">Product Name</label>
-          <input id="productName" class="inputFieldStyle" type="text" formControlName="productName" />
-        </div>
-
-        <!-- Product Description -->
-        <div class="form-field">
-          <label for="productDescription">Description</label>
-          <textarea id="productDescription" formControlName="productDescription" class="product-description"></textarea>
-        </div>
-
-        <!-- Product Price -->
-        <div class="form-field">
-          <label for="productPrice">Price</label>
-          <input id="productPrice" class="inputFieldStyle" type="number" formControlName="productPrice" />
-        </div>
-
-        <!-- Status -->
-        <div class="form-field">
-          <label for="status">Status</label>
-          <input id="status" class="inputFieldStyle" type="text" formControlName="status" />
-        </div>
-
-
-        <!-- Category Name -->
-        <div class="form-field">
-          <label for="productCategory">Category Name</label>
-          <select id="productCategory" class="inputFieldStyle" formControlName="productCategory"
-            (change)="onCategoryChange($event)">
-            <option *ngFor="let category of categories" [value]="category.name">
-              {{ category.name }}
-            </option>
-          </select>
-
-
-        </div>
-
-
-        <!-- Stock Quantity -->
-        <div class="form-field">
-          <label for="stockQuantity">Stock Quantity</label>
-          <input id="stockQuantity" class="inputFieldStyle" type="number" formControlName="stockQuantity" />
-        </div>
-
-        <!-- Rating -->
-        <div class="form-field">
-          <label for="rating">Rating</label>
-          <input id="rating" class="inputFieldStyle" type="text" formControlName="rating" />
-        </div>
-
-        <!-- Category ID -->
-        <div class="form-field">
-          <label for="categoryId">Category ID</label>
-          <input id="categoryId" class="inputFieldStyle" type="text" formControlName="categoryId" readonly />
-        </div>
-
-        <!-- Product Image File Upload -->
-        <div class="form-field">
-          <label for="productImage">Product Image</label>
-          <input type="file" (change)="onImageSelected($event)" />
-        </div>
+  <div class="page-content">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="header-badge">
+        <i class="pi pi-plus-circle"></i>
+        <span>New Listing</span>
       </div>
+      <h1>Add New <span class="gradient-text">Product</span></h1>
+      <p class="header-sub">Fill in the details below to list your product on the marketplace.</p>
+    </div>
 
-      <div class="form-actions">
-        <button type="submit" class="button">Add Product</button>
-        <button type="button" class="button" (click)="goToProducts()">Go To Products</button>
-      </div>
+    <!-- Form Card -->
+    <div class="form-card">
+      <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()" novalidate>
 
-      <div class="form-messages">
-        <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
-        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-      </div>
-    </form>
+        <div class="form-grid">
+          <!-- Product Name -->
+          <div class="form-field">
+            <label for="productName">
+              <i class="pi pi-tag"></i> Product Name
+            </label>
+            <input id="productName" type="text" formControlName="productName" placeholder="e.g. Wireless Headphones" />
+          </div>
+
+          <!-- Product Price -->
+          <div class="form-field">
+            <label for="productPrice">
+              <i class="pi pi-dollar"></i> Price ($)
+            </label>
+            <input id="productPrice" type="number" formControlName="productPrice" placeholder="e.g. 49.99" />
+          </div>
+
+          <!-- Category -->
+          <div class="form-field">
+            <label for="productCategory">
+              <i class="pi pi-th-large"></i> Category
+            </label>
+            <select id="productCategory" formControlName="productCategory" (change)="onCategoryChange($event)">
+              <option *ngFor="let category of categories" [value]="category.name">
+                {{ category.name }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Category ID -->
+          <div class="form-field">
+            <label for="categoryId">
+              <i class="pi pi-hashtag"></i> Category ID
+            </label>
+            <input id="categoryId" type="text" formControlName="categoryId" readonly class="readonly-field" />
+          </div>
+
+          <!-- Stock Quantity -->
+          <div class="form-field">
+            <label for="stockQuantity">
+              <i class="pi pi-box"></i> Stock Quantity
+            </label>
+            <input id="stockQuantity" type="number" formControlName="stockQuantity" placeholder="e.g. 100" />
+          </div>
+
+          <!-- Rating -->
+          <div class="form-field">
+            <label for="rating">
+              <i class="pi pi-star"></i> Rating (0–5)
+            </label>
+            <input id="rating" type="text" formControlName="rating" placeholder="e.g. 4.5" />
+          </div>
+
+          <!-- Status -->
+          <div class="form-field">
+            <label for="status">
+              <i class="pi pi-info-circle"></i> Status
+            </label>
+            <input id="status" type="text" formControlName="status" placeholder="e.g. Available" />
+          </div>
+
+          <!-- Product Image -->
+          <div class="form-field">
+            <label>
+              <i class="pi pi-image"></i> Product Image
+            </label>
+            <div class="file-upload-area">
+              <input type="file" (change)="onImageSelected($event)" id="imageUpload" class="file-input" />
+              <label for="imageUpload" class="file-label">
+                <i class="pi pi-upload"></i>
+                <span>Click to upload image</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Description (full width) -->
+          <div class="form-field full-width">
+            <label for="productDescription">
+              <i class="pi pi-align-left"></i> Description
+            </label>
+            <textarea id="productDescription" formControlName="productDescription" rows="4"
+              placeholder="Describe your product..."></textarea>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div class="form-messages" *ngIf="successMessage || errorMessage">
+          <div *ngIf="successMessage" class="success-message">
+            <i class="pi pi-check-circle"></i> {{ successMessage }}
+          </div>
+          <div *ngIf="errorMessage" class="error-message">
+            <i class="pi pi-times-circle"></i> {{ errorMessage }}
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="form-actions">
+          <button type="submit" class="primary-btn">
+            <i class="pi pi-check"></i> Add Product
+          </button>
+          <button type="button" class="glass-btn" (click)="goToProducts()">
+            <i class="pi pi-arrow-left"></i> Back to Products
+          </button>
+        </div>
+
+      </form>
+    </div>
   </div>
 </div>

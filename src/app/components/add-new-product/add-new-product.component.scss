@@ -1,148 +1,388 @@
-.add-product-container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ============================================
+   BASE
+   ============================================ */
+.add-product-wrapper {
+  font-family: 'Poppins', sans-serif;
+  background: #0b0e14;
+  color: #ffffff;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 5rem;
 }
 
-.add-product-card {
-  border-radius: 1rem;
-  box-shadow: 0 10px 30px var(--light);
-  backdrop-filter: blur(10px);
-  border-left: 2px solid var(--lighter);
-  border-bottom: 4px solid var(--lighter);
-  width: 100%;
-  max-width: 800px;
-  padding: 2.5rem;
+/* Background Orbs */
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.add-product-card h2 {
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.18;
+  animation: orbPulse 12s infinite alternate;
+}
+
+.orb-1 {
+  width: 500px;
+  height: 500px;
+  top: -150px;
+  left: -150px;
+  background: #667eea;
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  bottom: -150px;
+  right: -150px;
+  background: #764ba2;
+  animation-delay: 3s;
+}
+
+@keyframes orbPulse {
+  from {
+    transform: scale(1);
+    opacity: 0.18;
+  }
+
+  to {
+    transform: scale(1.15);
+    opacity: 0.28;
+  }
+}
+
+/* Page Content */
+.page-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 2rem;
+}
+
+/* ============================================
+   PAGE HEADER
+   ============================================ */
+.page-header {
   text-align: center;
-  color: var(--lighter);
-  font-weight: bold;
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3.5rem;
 }
 
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.2rem;
+  background: rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.35);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #a5b4fc;
+  margin-bottom: 1.5rem;
+  animation: glow 3s ease-in-out infinite;
+
+  i {
+    color: #667eea;
+  }
+}
+
+@keyframes glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(102, 126, 234, 0.15);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(102, 126, 234, 0.45);
+  }
+}
+
+.page-header h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-sub {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================
+   FORM CARD
+   ============================================ */
+.form-card {
+  background: linear-gradient(135deg, rgba(22, 26, 35, 0.9), rgba(15, 18, 24, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 28px;
+  padding: 3rem 3rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   FORM GRID
+   ============================================ */
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.8rem;
 }
 
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6rem;
+
+  &.full-width {
+    grid-column: 1 / -1;
+  }
 }
 
 label {
-  color: var(--lighter);
-  font-weight: 600;
-  font-size: 0.85rem;
-}
-
-input.p-inputtext,
-textarea.p-inputtextarea {
-  background-color: #2e2e3e !important;
-  color: #fff !important;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  transition: all 0.2s ease-in-out;
-  width: 100%;
-}
-
-input.p-inputtext::placeholder,
-textarea.p-inputtextarea::placeholder {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-input.p-inputtext:focus,
-textarea.p-inputtextarea:focus {
-  outline: none;
-  border-color: var(--lighter);
-  box-shadow: 0 0 0 3px rgba(222, 221, 223, 0.3);
-}
-
-.error-message {
-  color: #ff6b6b;
-  font-size: 0.8rem;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.02em;
+
+  i {
+    color: #667eea;
+    font-size: 0.9rem;
+  }
+}
+
+input,
+textarea,
+select {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 0.85rem 1.1rem;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  &:focus {
+    border-color: rgba(102, 126, 234, 0.6);
+    background: rgba(102, 126, 234, 0.06);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.12);
+  }
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(165,180,252,0.6)'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.2rem;
+  cursor: pointer;
+
+  option {
+    background: #161a23;
+    color: #ffffff;
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.readonly-field {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* File Upload */
+.file-upload-area {
+  position: relative;
+
+  .file-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
+  .file-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    border: 2px dashed rgba(102, 126, 234, 0.25);
+    border-radius: 12px;
+    background: rgba(102, 126, 234, 0.04);
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    i {
+      font-size: 1.5rem;
+      color: #667eea;
+    }
+
+    &:hover {
+      border-color: rgba(102, 126, 234, 0.6);
+      background: rgba(102, 126, 234, 0.08);
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
+
+/* ============================================
+   MESSAGES
+   ============================================ */
+.form-messages {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .success-message {
-  color: #4ade80;
-  font-size: 0.9rem;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.5rem;
+  padding: 1rem 1.2rem;
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.25);
+  border-radius: 12px;
+  color: #4ade80;
+  font-size: 0.9rem;
 }
 
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.2rem;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-radius: 12px;
+  color: #f87171;
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   ACTIONS
+   ============================================ */
 .form-actions {
   display: flex;
-  justify-content: center;
-  margin-top: 1rem;
+  gap: 1.2rem;
+  justify-content: flex-end;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
 }
 
-.p-button-success {
-  background-color: rgb(148, 137, 121) !important;
-  border: none !important;
-  color: #fff !important;
-  padding: 0.75rem 2rem !important;
-  border-radius: 8px !important;
-  font-weight: 600 !important;
-  transition: all 0.3s ease !important;
-  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4) !important;
-  margin: 6px;
+.primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2.2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+  }
 }
 
-.p-button-success:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--light) !important;
+.glass-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2.2rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-4px);
+  }
 }
 
-.p-button-success:active {
-  transform: translateY(0);
-}
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .page-content {
+    padding: 4rem 1rem 2rem;
+  }
 
-@media (max-width: 600px) {
-  .add-product-card {
-    padding: 1.5rem;
+  .form-card {
+    padding: 2rem 1.5rem;
   }
 
   .form-grid {
     grid-template-columns: 1fr;
   }
+
+  .form-field.full-width {
+    grid-column: 1;
+  }
+
+  .form-actions {
+    justify-content: stretch;
+    flex-direction: column;
+  }
+
+  .primary-btn,
+  .glass-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
-
-
-.button{
-    padding: 12px 35px;
-    background-color: transparent;
-    border: 2px solid var(--lighter);
-    border-radius: 30px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: var(--light); 
-    margin: 7px;
-     &:hover {
-                background-color: var(--light);
-                color: white; 
-                font-weight: 700;
-            }
-}
-
-
-
-.product-description{
-    height: 30px;
-}
-
-
-.inputFieldStyle{ 
-  height: 30px;
-} 

@@ -5,13 +5,14 @@ import { RegistrationService } from '../../Services/registration.service';
 import { NotificationService } from 'nzrm-ng';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-add-new-product',
   templateUrl: './add-new-product.component.html',
   styleUrls: ['./add-new-product.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule]
+  imports: [ReactiveFormsModule, CommonModule, NavbarComponent]
 })
 export class AddNewProductComponent {
   addProductForm: FormGroup;
@@ -19,13 +20,15 @@ export class AddNewProductComponent {
   selectedImageFile: File | null = null;
   successMessage = '';
   errorMessage = '';
+  previewImageUrl: string | null = null;
+  imageName: string = '';
 
- categories = [
-  { name: 'Home', id: 'f30bbfae-2764-4b47-a18e-414a5684cc52' },
-  { name: 'Accessories', id: 'b364abdd-c5dc-4219-a5bf-a340d0063493' },
-  { name: 'Fitness', id: 'aed67e16-7351-4bf9-8fb9-22b0def1ada4' },
-  { name: 'Electronics', id: 'aeb17982-1e03-474c-9e1f-7fd39c9d0ec8' }
-];
+  categories = [
+    { name: 'Home', id: 'f30bbfae-2764-4b47-a18e-414a5684cc52' },
+    { name: 'Accessories', id: 'b364abdd-c5dc-4219-a5bf-a340d0063493' },
+    { name: 'Fitness', id: 'aed67e16-7351-4bf9-8fb9-22b0def1ada4' },
+    { name: 'Electronics', id: 'aeb17982-1e03-474c-9e1f-7fd39c9d0ec8' }
+  ];
 
 
 
@@ -54,22 +57,19 @@ export class AddNewProductComponent {
 
     if (input.files && input.files.length > 0) {
       this.selectedImageFile = input.files[input.files.length - 1];
-
-      this._notificationService.success("Success","this product image uploaded ");
-
-      console.log("Is image?:", this.selectedImageFile.type.startsWith('image') ? true : false);
+      this.imageName = this.selectedImageFile.name;
+      // Generate preview
+      const reader = new FileReader();
+      reader.onload = (e) => { this.previewImageUrl = e.target?.result as string; };
+      reader.readAsDataURL(this.selectedImageFile);
+      this._notificationService.success("Success", "Product image uploaded");
 
       const imageFormData = new FormData();
       imageFormData.append('file', this.selectedImageFile);
       this.registrationService.uploadImage(imageFormData).subscribe({
-        next: (imageUrl: string) => {
-          console.log("GOT THE IMAGE URL: ", JSON.stringify(imageUrl));
-
-        }, error: (error) => {
-          console.error("Error uploading image: ", error);
-
-        }
-      })
+        next: (imageUrl: string) => { console.log("GOT THE IMAGE URL: ", JSON.stringify(imageUrl)); },
+        error: (error) => { console.error("Error uploading image: ", error); }
+      });
     }
   }
 
@@ -116,18 +116,18 @@ export class AddNewProductComponent {
 
   goToProducts(): void {
     this.router.navigate(['/products']);
-  } 
-
-onCategoryChange(event: Event): void {
-  const selectedName = (event.target as HTMLSelectElement).value;
-  const selectedCategory = this.categories.find(cat => cat.name === selectedName);
-
-  if (selectedCategory) {
-    this.addProductForm.patchValue({
-      categoryId: selectedCategory.id
-    });
   }
-}
+
+  onCategoryChange(event: Event): void {
+    const selectedName = (event.target as HTMLSelectElement).value;
+    const selectedCategory = this.categories.find(cat => cat.name === selectedName);
+
+    if (selectedCategory) {
+      this.addProductForm.patchValue({
+        categoryId: selectedCategory.id
+      });
+    }
+  }
 
 
 }

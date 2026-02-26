@@ -33,10 +33,13 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "bootstrap/dist/css/bootstrap.min.css",
+              "bootstrap-icons/font/bootstrap-icons.css",
+              "primeflex/primeflex.css",
+              "primeicons/primeicons.css"
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
