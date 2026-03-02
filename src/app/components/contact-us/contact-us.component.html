@@ -1,35 +1,59 @@
 <app-navbar></app-navbar>
 
 <div class="contact-page-container">
-  <!-- Decorative background elements -->
+
+  <!-- ── Background layer ── -->
   <div class="contact-bg-elements">
     <div class="bg-circle circle-1"></div>
     <div class="bg-circle circle-2"></div>
+    <div class="bg-circle circle-3"></div>
+    <div class="bg-grid"></div>
+    <!-- Particle dots -->
+    <div class="particles">
+      <span class="particle" *ngFor="let p of particles" [style.left.%]="p.x" [style.top.%]="p.y"
+        [style.animationDelay]="p.delay" [style.animationDuration]="p.duration"></span>
+    </div>
     <div class="bg-blur"></div>
   </div>
 
+  <!-- ── Main card ── -->
   <div class="contact-content">
-    <!-- Left side - Welcome info -->
+
+    <!-- LEFT — Info panel -->
     <div class="contact-info">
+
+      <!-- Decorative ring behind the orb -->
+      <div class="deco-ring"></div>
+
       <div class="info-content">
         <div class="welcome-header">
-          <h2>We're Here to Help</h2>
-          <p class="subtitle">Reach out to our team for any questions or support you might need</p>
+          <div class="brand-badge">
+            <i class="pi pi-headset"></i>
+            <span>Support Center</span>
+          </div>
+          <h2>We're Here<br><span class="gradient-text">to Help You</span></h2>
+          <p class="subtitle">Reach out to our team for any questions, support, or just to say hello!</p>
         </div>
 
+        <!-- Glowing orb illustration -->
         <div class="illustration-container">
+          <div class="orb-ring ring-outer"></div>
+          <div class="orb-ring ring-middle"></div>
+          <div class="orb-core">
+            <i class="pi pi-send"></i>
+          </div>
           <div class="floating-icons">
-            <i class="pi pi-headset floating-icon-1"></i>
-            <i class="pi pi-envelope floating-icon-2"></i>
+            <i class="pi pi-headset   floating-icon-1"></i>
+            <i class="pi pi-envelope  floating-icon-2"></i>
             <i class="pi pi-map-marker floating-icon-3"></i>
+            <i class="pi pi-comments  floating-icon-4"></i>
           </div>
         </div>
 
+        <!-- Benefit cards -->
         <div class="contact-benefits">
           <div class="benefit-item">
-            <div class="benefit-icon">
-              <i class="pi pi-clock"></i>
-            </div>
+            <div class="benefit-icon"><i class="pi pi-clock"></i></div>
             <div class="benefit-text">
               <h4>Quick Response</h4>
               <p>Our team typically responds within 24 hours</p>
@@ -37,19 +61,15 @@
           </div>
 
           <div class="benefit-item">
-            <div class="benefit-icon">
-              <i class="pi pi-shield"></i>
-            </div>
+            <div class="benefit-icon"><i class="pi pi-shield"></i></div>
             <div class="benefit-text">
               <h4>Secure Communication</h4>
-              <p>All your messages are encrypted and protected</p>
+              <p>All messages are encrypted and protected</p>
             </div>
           </div>
 
           <div class="benefit-item">
-            <div class="benefit-icon">
-              <i class="pi pi-users"></i>
-            </div>
+            <div class="benefit-icon"><i class="pi pi-users"></i></div>
             <div class="benefit-text">
               <h4>Expert Support</h4>
               <p>Our specialists are ready to assist you</p>
@@ -58,8 +78,9 @@
         </div>
       </div>
 
+      <!-- Social links -->
       <div class="social-links">
-        <p>Connect with us:</p>
+        <p>Connect with us</p>
         <div class="social-icons">
           <a href="https://www.linkedin.com/in/yamenamjed/" target="_blank" aria-label="LinkedIn" class="social-icon">
             <i class="pi pi-linkedin"></i>
@@ -71,68 +92,88 @@
       </div>
     </div>
 
-    <!-- Right side - Contact form -->
+    <!-- RIGHT — Form panel -->
     <div class="contact-form-container">
+
       <div class="form-header">
-        <i class="pi pi-send form-icon"></i>
+        <div class="form-icon-wrap">
+          <i class="pi pi-send form-icon"></i>
+        </div>
         <h2>Send Us a Message</h2>
-        <p>Fill out the form below and we'll get back to you shortly.</p>
+        <p>Fill out the form and we'll get back to you shortly.</p>
       </div>
 
       <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate class="contact-form">
         <div class="form-grid">
+
           <!-- Name -->
-          <div class="form-field">
-            <label for="name">Name <span>*</span></label>
-            <input id="name" class="inputTextStyle" type="text" pInputText formControlName="name" placeholder="Your name" />
+          <div class="form-field full-width">
+            <label for="name">Full Name <span class="req">*</span></label>
+            <div class="input-wrapper">
+              <i class="pi pi-user input-icon"></i>
+              <input id="name" class="inputTextStyle" type="text" pInputText formControlName="name"
+                placeholder="Your name" />
+            </div>
             <small *ngIf="submitted && contactForm.get('name')?.invalid" class="error-message">
-              <i class="pi pi-exclamation-circle" style="color: red;"></i> Name is required
+              <i class="pi pi-exclamation-circle"></i> Name is required
             </small>
           </div>
 
           <!-- Email -->
-          <div class="form-field">
-            <label for="email">Email <span>*</span></label>
-            <input id="email" class="inputTextStyle" type="email" pInputText formControlName="email" placeholder="your.email@example.com" readonly  />
+          <div class="form-field full-width">
+            <label for="email">Email Address <span class="req">*</span></label>
+            <div class="input-wrapper">
+              <i class="pi pi-envelope input-icon"></i>
+              <input id="email" class="inputTextStyle" type="email" pInputText formControlName="email"
+                placeholder="your@email.com" readonly />
+            </div>
             <small *ngIf="submitted && contactForm.get('email')?.invalid" class="error-message">
-              <i class="pi pi-exclamation-circle" style="color: red;"></i> Valid email is required
+              <i class="pi pi-exclamation-circle"></i> Valid email is required
             </small>
           </div>
 
           <!-- Subject -->
           <div class="form-field full-width">
             <label for="subject">Subject</label>
-            <input id="subject" class="inputTextStyle" type="text" pInputText formControlName="subject" placeholder="What's this about?" />
-             <small *ngIf="submitted && contactForm.get('message')?.invalid" class="error-message">
-              <i class="pi pi-exclamation-circle" style="color: red;"></i> Subject is required
-            </small>
+            <div class="input-wrapper">
+              <i class="pi pi-tag input-icon"></i>
+              <input id="subject" class="inputTextStyle" type="text" pInputText formControlName="subject"
+                placeholder="What's this about?" />
+            </div>
           </div>
 
           <!-- Message -->
           <div class="form-field full-width">
-            <label for="message">Message <span>*</span></label>
-            <textarea id="message" class="inputTextStyle" rows="5" pInputTextarea formControlName="message" placeholder="Your message here..."></textarea>
+            <label for="message">Message <span class="req">*</span></label>
+            <div class="input-wrapper textarea-wrapper">
+              <i class="pi pi-comment input-icon textarea-icon"></i>
+              <textarea id="message" class="inputTextStyle" rows="5" pInputTextarea formControlName="message"
+                placeholder="Write your message here..."></textarea>
+            </div>
             <small *ngIf="submitted && contactForm.get('message')?.invalid" class="error-message">
-              <i class="pi pi-exclamation-circle" style="color: red;"></i> Message is required
+              <i class="pi pi-exclamation-circle"></i> Message is required
             </small>
           </div>
         </div>
 
-        <!-- Submit Button -->
+        <!-- Submit -->
         <div class="submit-wrapper">
           <button pButton type="submit" class="submit-button">
-            <i class="pi pi-send"></i> Send Message
+            <span class="btn-shimmer"></span>
+            <i class="pi pi-send"></i>
+            <span>Send Message</span>
           </button>
         </div>
 
-        <!-- Feedback Messages -->
+        <!-- Feedback -->
         <div *ngIf="successMessage" class="success-message">
           <i class="pi pi-check-circle"></i> {{ successMessage }}
         </div>
-        <div *ngIf="errorMessage" class="error-message">
+        <div *ngIf="errorMessage" class="error-alert">
           <i class="pi pi-exclamation-triangle"></i> {{ errorMessage }}
         </div>
       </form>
     </div>
+
   </div>
 </div>
