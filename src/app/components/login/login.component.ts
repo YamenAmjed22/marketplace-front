@@ -19,6 +19,7 @@ export class LoginComponent {
   submitted = false;
   successMessage = '';
   errorMessage = '';
+  showPassword = false;
 
   constructor(
     private fb: FormBuilder,

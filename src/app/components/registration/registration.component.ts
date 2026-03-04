@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators ,ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RegistrationService } from '../../Services/registration.service';
 import { Router } from '@angular/router';
@@ -16,7 +16,7 @@ import { NavbarComponent } from "../navbar/navbar.component";
     ButtonModule,
     InputTextModule,
     NavbarComponent
-],
+  ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'
 })
@@ -24,17 +24,18 @@ import { NavbarComponent } from "../navbar/navbar.component";
 export class RegistrationComponent {
 
 
-  loading:boolean = false; 
+  loading: boolean = false;
   registerForm: FormGroup;
   submitted = false;
   successMessage = '';
   errorMessage = '';
+  showPassword = false;
 
 
   constructor(
     private fb: FormBuilder,
-    private registrationService:RegistrationService,
-    private router:Router,
+    private registrationService: RegistrationService,
+    private router: Router,
     private _notificationService: NotificationService
   ) {
     this.registerForm = this.fb.group({
@@ -45,7 +46,7 @@ export class RegistrationComponent {
       lastName: [''],
       email: ['', [Validators.email, Validators.required]],
       phone: ['', [Validators.minLength(10)]],
-      address:['',]
+      address: ['',]
 
     });
   }
@@ -60,25 +61,25 @@ export class RegistrationComponent {
       return;
     }
 
-    this .loading= true; 
+    this.loading = true;
     this.registrationService.registration(registrationData).subscribe({
-      next:(res:any) =>{
-        localStorage.setItem('email',this.registerForm.value.email);
+      next: (res: any) => {
+        localStorage.setItem('email', this.registerForm.value.email);
         this.registerForm.reset();
         this.successMessage = res;
         this.submitted = false;
-        this._notificationService.success("Success","The User Make Registration Success !")
+        this._notificationService.success("Success", "The User Make Registration Success !")
         this.router.navigate(['/checkotp']);
 
 
-      },error:(err)=>{
-        this._notificationService.error("Error",err.error)
+      }, error: (err) => {
+        this._notificationService.error("Error", err.error)
       }
     })
-    
+
   }
 
-  goToLoginPage(){
+  goToLoginPage() {
     this.router.navigate(['/login']);
   }
 

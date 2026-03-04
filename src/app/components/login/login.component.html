@@ -97,8 +97,13 @@
             <label for="password">Password</label>
           </div>
 
-          <input id="password" class="inputTextStyle" type="text" pInputText formControlName="password"
-            placeholder="Your Password" />
+          <div class="password-wrapper">
+            <input id="password" class="inputTextStyle" [type]="showPassword ? 'text' : 'password'" pInputText
+              formControlName="password" placeholder="Your Password" />
+            <button type="button" class="toggle-password" (click)="showPassword = !showPassword" tabindex="-1">
+              <i [class]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
+            </button>
+          </div>
         </div>
 
         <!-- Submit Button -->

@@ -67,7 +67,7 @@
           <a href="https://github.com/YamenAmjed22" target="_blank" aria-label="GitHub" class="social-icon">
             <i class="pi pi-github"></i>
           </a>
-      
+
         </div>
       </div>
     </div>
@@ -95,12 +95,18 @@
           <!-- Password -->
           <div class="form-field">
             <label for="password" class="labelStyle">Password <span>*</span></label>
-            <input id="password" class="inputTextStyle" type="password" pInputText formControlName="password"
-              placeholder="At least 8 characters" />
+            <div class="password-wrapper">
+              <input id="password" class="inputTextStyle" [type]="showPassword ? 'text' : 'password'" pInputText
+                formControlName="password" placeholder="At least 8 characters" />
+              <button type="button" class="toggle-password" (click)="showPassword = !showPassword" tabindex="-1">
+                <i [class]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
+              </button>
+            </div>
             <small *ngIf="submitted && registerForm.get('password')?.invalid" class="error-message">
               <i class="pi pi-exclamation-circle"></i> Password is required (min 8 characters)
             </small>
           </div>
+
 
           <!-- First Name -->
           <div class="form-field">

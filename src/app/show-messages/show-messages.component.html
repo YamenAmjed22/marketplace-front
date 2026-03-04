@@ -1,21 +1,75 @@
 <app-navbar></app-navbar>
-<div class="messages-container">
-  <h2>Contact Messages</h2>
 
-  <div *ngIf="!contactUs || contactUs.length === 0" class="empty">
-    No messages to show.
+<div class="messages-page-container">
+
+  <!-- ── Animated background ── -->
+  <div class="messages-bg-elements">
+    <div class="bg-circle circle-1"></div>
+    <div class="bg-circle circle-2"></div>
+    <div class="bg-circle circle-3"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-blur"></div>
   </div>
 
-  <div *ngIf="contactUs && contactUs.length > 0" class="messages-list">
-    <div class="message-card" *ngFor="let message of contactUs">
-      <h3 class="subject">{{ message.subject }}</h3>
-      <p><strong>Name:</strong> {{ message.name }}</p>
-      <p><strong>Email:</strong> {{ message.email }}</p>
-      <p class="message-text">{{ message.message }}</p>
-        <button class="delete-btn" (click)="deleteMessage(message.id)" *ngIf="isAdmin">
-            🗑 Delete
-          </button>
+  <!-- ── Main content ── -->
+  <div class="messages-content">
+
+    <!-- Page header -->
+    <div class="page-header">
+      <div class="header-icon-wrap">
+        <i class="pi pi-inbox header-icon"></i>
+      </div>
+      <h1>Contact <span class="gradient-text">Messages</span></h1>
+      <p class="header-subtitle">All incoming messages from users are listed below.</p>
     </div>
-   
+
+    <!-- Empty state -->
+    <div *ngIf="!contactUs || contactUs.length === 0" class="empty-state">
+      <div class="empty-icon-wrap">
+        <i class="pi pi-comment"></i>
+      </div>
+      <h3>No Messages Yet</h3>
+      <p>When users submit contact forms, their messages will appear here.</p>
+    </div>
+
+    <!-- Messages grid -->
+    <div *ngIf="contactUs && contactUs.length > 0" class="messages-grid">
+      <div class="message-card" *ngFor="let message of contactUs">
+        <div class="card-glow"></div>
+
+        <div class="card-header">
+          <div class="card-icon-wrap">
+            <i class="pi pi-envelope"></i>
+          </div>
+          <div class="card-meta">
+            <h3 class="subject">{{ message.subject || 'No Subject' }}</h3>
+            <span class="card-badge">New</span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="info-row">
+            <i class="pi pi-user"></i>
+            <span><strong>Name:</strong> {{ message.name }}</span>
+          </div>
+          <div class="info-row">
+            <i class="pi pi-at"></i>
+            <span><strong>Email:</strong> {{ message.email }}</span>
+          </div>
+          <div class="message-text">
+            <i class="pi pi-comment"></i>
+            <p>{{ message.message }}</p>
+          </div>
+        </div>
+
+        <div class="card-footer" *ngIf="isAdmin">
+          <button class="delete-btn" (click)="deleteMessage(message.id)">
+            <i class="pi pi-trash"></i>
+            <span>Delete</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
