@@ -1,101 +1,241 @@
-:root {
-  --primary-color: #222831;
-  --secondary-color: #393E46;
-  --light: #948979;
-  --lighter: #DFD0B8;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-.container {
-  height: 100svh;
+.otp-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
 
-.otp-wrapper {
-  max-width: 420px;
-  margin: 8vh auto;
-  padding: 2.5rem 2rem;
-  background-color: var(--secondary-color);
-  color: var(--lighter);
-  border: 1px solid var(--light);
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(148, 137, 121, 0.3);
+/* Background Animations */
+.bg-elements {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: float 20s infinite ease-in-out;
+}
+
+.c1 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #DFD0B8, #948979);
+  /* var(--lighter), var(--light) */
+  top: -100px;
+  left: -100px;
+}
+
+.c2 {
+  width: 600px;
+  height: 600px;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  bottom: -200px;
+  right: -200px;
+  animation-delay: 5s;
+}
+
+.blur-layer {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(3px);
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  75% {
+    transform: translate(20px, 30px) scale(1.05);
+  }
+}
+
+/* Card Design */
+.otp-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 500px;
+  padding: 4rem 3.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  backdrop-filter: blur(4px);
-  transition: all 0.3s ease;
-  font-weight: bold;
+  animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header {
+  margin-bottom: 3rem;
+
+  .icon-box {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+
+    i {
+      font-size: 2.2rem;
+      color: #fff;
+    }
+  }
 
   h2 {
-    margin-bottom: 0.8rem;
-    font-size: 2.1rem;
-    color: var(--lighter);
-    text-shadow: 0 0 6px rgba(223, 208, 184, 0.5);
+    color: #2d3748;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
   }
 
-
-
-  .instruction {
+  p {
+    color: #718096;
+    line-height: 1.6;
     font-size: 1rem;
-    color: var(--light);
-    margin-bottom: 1.8rem;
+  }
+}
+
+/* Verification Form */
+.verification-form {
+  .input-section {
+    margin-bottom: 2.5rem;
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-  }
-
-  input {
-    padding: 14px;
+  .otp-field {
+    width: 100%;
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
     border-radius: 12px;
-    border: 1px solid var(--light);
-    background-color: var(--primary-color);
-    color: var(--lighter);
-    font-size: 1.1rem;
+    padding: 1rem;
+    font-size: 2.5rem;
+    color: #2d3748;
     text-align: center;
-    letter-spacing: 0.3rem;
-    box-shadow: inset 0 0 8px rgba(223, 208, 184, 0.2);
-    transition: border 0.3s ease, box-shadow 0.3s ease;
+    letter-spacing: 1.2rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    outline: none;
+
+    &::placeholder {
+      color: #cbd5e0;
+      letter-spacing: 1.2rem;
+    }
 
     &:focus {
-      outline: none;
-      border-color: var(--lighter);
-      box-shadow: 0 0 10px var(--lighter);
-    }
-  }
-
-  button {
-    padding: 14px;
-    border-radius: 12px;
-    border: none;
-    background-color: var(--lighter);
-    color: var(--primary-color);
-    font-weight: bold;
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(223, 208, 184, 0.6);
-    transition: background 0.3s ease, transform 0.2s ease;
-
-    &:hover {
-      background-color: var(--light);
+      background: #fff;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
       transform: translateY(-2px);
     }
-
-    &:disabled {
-      background: #888;
-      color: #333;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
   }
 
-  .description {
-    margin-top: 1.8rem;
-    font-size: 0.95rem;
-    color: var(--light);
-    font-style: italic;
+  .input-hint {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: #a0aec0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+}
+
+.verify-btn {
+  width: 100%;
+  padding: 1.1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+.security-note {
+  margin-top: 2.5rem;
+  font-size: 0.8rem;
+  color: #a0aec0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-top: 1px solid #edf2f7;
+  padding-top: 1.5rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 520px) {
+  .otp-container {
+    padding: 1rem;
+  }
+
+  .otp-card {
+    padding: 3rem 1.5rem;
+  }
+
+  .header h2 {
+    font-size: 1.7rem;
+  }
+
+  .otp-field {
+    font-size: 2rem;
+    letter-spacing: 0.8rem;
+
+    &::placeholder {
+      letter-spacing: 0.8rem;
+    }
   }
 }

@@ -1,16 +1,42 @@
-<div class="container">
-  <div class="otp-wrapper">
-    <h2>OTP Verification</h2>
-    <p class="instruction">Please enter the 6-digit OTP sent to your email.</p>
-    <form (ngSubmit)="verifyOtp()">
-      <input type="text" maxlength="6" [(ngModel)]="otp" name="otp" placeholder="Enter 6-digit OTP" required />
-      <button type="submit" [disabled]="isLoading">
-        {{ isLoading ? 'Verifying...' : 'Verify OTP' }}
-      </button>
-    </form>
-    <p class="description">
-      Once you enter the OTP, it will be validated and automatically expire.
-    </p>
+<div class="otp-container">
+  <!-- Animated Background -->
+  <div class="bg-elements">
+    <div class="circle c1"></div>
+    <div class="circle c2"></div>
+    <div class="blur-layer"></div>
   </div>
 
+  <div class="otp-card">
+    <div class="header">
+      <div class="icon-box">
+        <i class="pi pi-shield"></i>
+      </div>
+      <h2>Verify Your Account</h2>
+      <p>We've sent a 6-digit code to your email. Please enter it below to continue.</p>
+    </div>
+
+    <form (ngSubmit)="verifyOtp()" #otpForm="ngForm" class="verification-form">
+      <div class="input-section">
+        <div class="otp-input-wrapper">
+          <input id="otp" type="text" maxlength="6" [(ngModel)]="otp" name="otp" class="otp-field" placeholder="000000"
+            required pattern="^[0-9]{6}$" autocomplete="one-time-code" autofocus />
+        </div>
+        <div class="input-hint">
+          <i class="pi pi-info-circle"></i> 6-digit numeric code
+        </div>
+      </div>
+
+      <div class="action-section">
+        <button type="submit" [disabled]="isLoading || otpForm.invalid" class="verify-btn">
+          <span *ngIf="!isLoading">Verify & Proceed</span>
+          <i class="pi pi-spin pi-spinner" *ngIf="isLoading"></i>
+        </button>
+      </div>
+    </form>
+
+    <div class="security-note">
+      <i class="pi pi-lock"></i>
+      Secure Verification Port
+    </div>
+  </div>
 </div>
