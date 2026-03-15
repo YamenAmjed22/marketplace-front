@@ -6,6 +6,7 @@ import { NavbarComponent } from "../components/navbar/navbar.component";
 import { RegistrationService } from '../Services/registration.service';
 import { Product } from '../models/product.interface';
 import { ConfirmationDialogService, NotificationService } from 'nzrm-ng';
+import { AdminService } from '../admin/admin.service';
 
 @Component({
   selector: 'app-products',
@@ -22,9 +23,17 @@ export class ProductsComponent implements OnInit {
   selectedCategory = 'All';
   searchTerm = '';
   isImgLoaded: boolean = false;
-  isAdmin: boolean = true;
+  isAdmin: boolean = false;
 
-  constructor(private router: Router, private registrationService: RegistrationService, private confirmDialogSerive: ConfirmationDialogService, private noti: NotificationService) { }
+  constructor(
+    private router: Router,
+    private registrationService: RegistrationService,
+    private confirmDialogSerive: ConfirmationDialogService,
+    private noti: NotificationService,
+    private adminService: AdminService
+  ) {
+    this.isAdmin = this.adminService.isAdminLoggedIn();
+  }
 
   ngOnInit(): void {
     this.registrationService.getAllProducts().subscribe({
@@ -59,8 +68,9 @@ export class ProductsComponent implements OnInit {
   }
 
   goToAddProducts(): void {
-    this.router.navigate(['/addProducts']);
+    this.router.navigate(['/admin/dashboard/addProducts']);
   }
+
 
 
   addToCart(product: any) {

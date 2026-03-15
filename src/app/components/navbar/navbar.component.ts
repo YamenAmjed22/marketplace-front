@@ -93,9 +93,5 @@ export class NavbarComponent {
     this.closeMobileMenu();
   }
 
-  goToContactMessages() {
-    this.router.navigate(['contactusMessages']);
-    this.closeMobileMenu();
-  }
 
 }

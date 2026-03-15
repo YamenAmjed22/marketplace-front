@@ -27,7 +27,8 @@ export class AddNewProductComponent {
     { name: 'Home', id: 'f30bbfae-2764-4b47-a18e-414a5684cc52' },
     { name: 'Accessories', id: 'b364abdd-c5dc-4219-a5bf-a340d0063493' },
     { name: 'Fitness', id: 'aed67e16-7351-4bf9-8fb9-22b0def1ada4' },
-    { name: 'Electronics', id: 'aeb17982-1e03-474c-9e1f-7fd39c9d0ec8' }
+    { name: 'Electronics', id: 'aeb17982-1e03-474c-9e1f-7fd39c9d0ec8' },
+    { name: 'beauty care', id: '3d37dda8-9a13-48be-b5a7-78185e061fa8' }
   ];
 
 

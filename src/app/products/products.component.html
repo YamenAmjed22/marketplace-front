@@ -19,7 +19,7 @@
       <h1>Discover Our <span class="gradient-text">Products</span></h1>
       <p class="subtitle">Find exactly what you're looking for from our curated collection.</p>
       <div class="hero-actions">
-        <button class="primary-btn" (click)="goToAddProducts()">
+        <button class="primary-btn" *ngIf="isAdmin" (click)="goToAddProducts()">
           <i class="pi pi-plus"></i>
           Add New Product
         </button>

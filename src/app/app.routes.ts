@@ -12,6 +12,9 @@ import { CartComponent } from './components/cart/cart.component';
 import { AuthGuard } from './components/auth.guard';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 import { ShowMessagesComponent } from './show-messages/show-messages.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { adminAuthGuard } from './admin/admin-auth.guard';
 
 export const routes: Routes = [
     {
@@ -26,7 +29,7 @@ export const routes: Routes = [
         path: 'login',
         component: LoginComponent
     },
-     {
+    {
         path: 'registration',
         component: RegistrationComponent
     },
@@ -53,12 +56,6 @@ export const routes: Routes = [
 
     },
     {
-        path: 'addProducts',
-        component: AddNewProductComponent,
-        canActivate: [AuthGuard]
-
-    },
-    {
         path: 'service',
         component: ServiceComponent,
         canActivate: [AuthGuard]
@@ -71,9 +68,28 @@ export const routes: Routes = [
 
     },
     {
-        path: 'contactusMessages',
-        component:ShowMessagesComponent,
-        canActivate:[AuthGuard]
+        path: 'admin/login',
+        component: AdminLoginComponent
+    },
+    {
+        path: 'admin/dashboard',
+        component: AdminDashboardComponent,
+        canActivate: [adminAuthGuard],
+        children: [
+            {
+                path: 'addProducts',
+                component: AddNewProductComponent
+            },
+            {
+                path: 'contactusMessages',
+                component: ShowMessagesComponent
+            },
+            {
+                path: '',
+                redirectTo: 'addProducts',
+                pathMatch: 'full'
+            }
+        ]
     }
-
 ];
+

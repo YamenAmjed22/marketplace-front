@@ -1,0 +1,53 @@
+<div class="admin-dashboard-container">
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar" [class.collapsed]="isCollapsed">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="pi pi-shield"></i>
+                <h2 *ngIf="!isCollapsed">Admin Panel</h2>
+            </div>
+            <button class="toggle-btn" (click)="toggleSidebar()">
+                <i class="pi" [class.pi-angle-left]="!isCollapsed" [class.pi-angle-right]="isCollapsed"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a routerLink="addProducts" routerLinkActive="active-link" title="Add Products">
+                        <i class="pi pi-plus-circle"></i>
+                        <span *ngIf="!isCollapsed">Add Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="contactusMessages" routerLinkActive="active-link" title="Messages">
+                        <i class="pi pi-envelope"></i>
+                        <span *ngIf="!isCollapsed">Messages</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn" (click)="logout()" title="Logout">
+                <i class="pi pi-sign-out"></i>
+                <span *ngIf="!isCollapsed">Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main-content">
+        <header class="top-nav">
+            <div class="header-items">
+                <div class="user-greeting">
+                    Welcome back, Admin
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+</div>
