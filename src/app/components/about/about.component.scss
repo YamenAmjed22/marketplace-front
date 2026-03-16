@@ -301,24 +301,28 @@ h2 {
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .member-image {
-    height: 400px;
+    height: 450px;
     border-radius: 24px;
     background-size: cover;
     background-position: center;
     position: relative;
     overflow: hidden;
     margin-bottom: 2rem;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .member-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(102, 126, 234, 0.9), transparent);
+    background: linear-gradient(to top, rgba(15, 18, 24, 0.95), rgba(15, 18, 24, 0.4), transparent);
     opacity: 0;
     display: flex;
     align-items: flex-end;
@@ -331,6 +335,12 @@ h2 {
 .team-member:hover .member-overlay {
     opacity: 1;
     transform: translateY(0);
+}
+
+.team-member:hover .member-image {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    border-color: #667eea;
 }
 
 .socials {
@@ -481,8 +491,7 @@ h2 {
     }
 
     .team-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 3rem;
     }
 
     .cta-box h2 {
@@ -516,6 +525,10 @@ h2 {
     }
 
     .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-grid {
         grid-template-columns: 1fr;
     }
 

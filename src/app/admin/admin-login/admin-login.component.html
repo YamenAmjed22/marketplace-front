@@ -1,82 +1,61 @@
-<div class="login-page-container">
-    <!-- Decorative background elements -->
-    <div class="login-bg-elements">
-        <div class="bg-circle circle-1"></div>
-        <div class="bg-circle circle-2"></div>
-        <div class="bg-blur"></div>
-    </div>
+<div class="admin-login-wrapper">
+    <!-- Dynamic Glowing Background -->
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="grid-bg"></div>
 
-    <div class="login-content">
-        <!-- Left side - Welcome info -->
-        <div class="login-info">
-            <div class="info-content">
-                <div class="welcome-header">
-                    <h2>Admin Portal</h2>
-                    <p class="subtitle">Secure access for administrative tasks.</p>
-                </div>
-
-                <div class="illustration-container">
-                    <div class="floating-icons">
-                        <i class="pi pi-desktop floating-icon-1"></i>
-                        <i class="pi pi-key floating-icon-2"></i>
-                        <i class="pi pi-shield floating-icon-3"></i>
-                    </div>
-                </div>
+    <div class="admin-login-container admin-fade-in">
+        <div class="brand-header">
+            <div class="shield-icon">
+                <i class="pi pi-shield"></i>
+                <div class="ring"></div>
             </div>
+            <h1 class="title">System Admin</h1>
+            <p class="subtitle">Secure authentication gateway</p>
         </div>
 
-        <!-- Right side - Login form -->
-        <div class="login-form-container">
-            <div class="form-header">
-                <i class="pi pi-shield form-icon"></i>
-                <h2>Admin Sign In</h2>
-                <p>Enter your administrative credentials.</p>
+        <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()" novalidate class="form-container">
+
+            <div class="input-group fade-delay-1">
+                <label for="username">Administrator ID</label>
+                <div class="input-wrapper">
+                    <i class="pi pi-user input-icon"></i>
+                    <input id="username" type="text" formControlName="userName" placeholder="Enter your clearance ID"
+                        autocomplete="off" />
+                    <div class="input-border"></div>
+                </div>
             </div>
 
-            <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()" novalidate class="login-form">
-                <!-- Username -->
-                <div class="form-field">
-                    <div class="form-header-content">
-                        <i class="pi pi-user"></i>
-                        <label for="username">Username</label>
-                    </div>
-
-                    <input id="username" class="inputTextStyle" type="text" formControlName="userName"
-                        placeholder="Admin username" />
-                </div>
-
-                <!-- Password -->
-                <div class="form-field">
-                    <div class="form-header-content">
-                        <i class="pi pi-lock"></i>
-                        <label for="password">Password</label>
-                    </div>
-
-                    <div class="password-wrapper">
-                        <input id="password" class="inputTextStyle" [type]="showPassword ? 'text' : 'password'"
-                            formControlName="password" placeholder="Admin Password" />
-                        <button type="button" class="toggle-password" (click)="showPassword = !showPassword"
-                            tabindex="-1">
-                            <i [class]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Submit Button -->
-                <div class="submit-wrapper">
-                    <button type="submit" [class.disabled]="LoginForm.invalid" class="submit-button">
-                        <i class="pi pi-sign-in"></i> Admin Sign In
+            <div class="input-group fade-delay-2">
+                <label for="password">Security Protocol</label>
+                <div class="input-wrapper">
+                    <i class="pi pi-lock input-icon"></i>
+                    <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                        placeholder="Enter security key" />
+                    <button type="button" class="eye-btn" (click)="showPassword = !showPassword" tabindex="-1">
+                        <i [class]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
                     </button>
+                    <div class="input-border"></div>
                 </div>
+            </div>
 
-                <!-- Messages -->
-                <div *ngIf="successMessage" class="success-message">
-                    <i class="pi pi-check-circle"></i> {{ successMessage }}
-                </div>
-                <div *ngIf="errorMessage" class="error-message">
-                    <i class="pi pi-exclamation-triangle"></i> {{ errorMessage }}
-                </div>
-            </form>
-        </div>
+            <div class="action-section fade-delay-3">
+                <button type="submit" [disabled]="LoginForm.invalid || submitted" class="auth-btn">
+                    <span class="btn-text" *ngIf="!submitted">Initialize Session</span>
+                    <span class="btn-text" *ngIf="submitted">Authenticating...</span>
+                    <i *ngIf="!submitted" class="pi pi-arrow-right btn-icon"></i>
+                    <i *ngIf="submitted" class="pi pi-spinner pi-spin btn-icon"></i>
+                </button>
+            </div>
+
+            <!-- Messages -->
+            <div *ngIf="successMessage" class="status-msg success admin-fade-in">
+                <i class="pi pi-check-circle"></i> {{ successMessage }}
+            </div>
+            <div *ngIf="errorMessage" class="status-msg error admin-fade-in">
+                <i class="pi pi-exclamation-triangle"></i> {{ errorMessage }}
+            </div>
+
+        </form>
     </div>
 </div>
