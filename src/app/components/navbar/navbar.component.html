@@ -1,35 +1,104 @@
-<nav [class.hidden]="!isNavbarVisible">
+<nav [class.hidden]="!isNavbarVisible" [class.scrolled]="isScrolled">
+
+  <!-- ── Logo ── -->
   <div class="logo-frame" (click)="goToHomePage()">
-    <span class="brand-name">
-      <span class="bold">Yamen</span>
-      <span class="thin">Amjed</span>
-    </span>
-    <div class="corner-top"></div>
-    <div class="corner-bottom"></div>
+    <div class="logo-wrap">
+      <div class="logo-icon-box">
+        <i class="pi pi-shopping-bag"></i>
+      </div>
+      <div class="logo-title">
+        <span class="title-bold">MARKET</span><span class="title-light">PLACE</span>
+      </div>
+    </div>
   </div>
 
-  <!-- Hamburger Menu Button -->
-  <button class="hamburger" [class.active]="mobileMenuOpen" (click)="toggleMobileMenu()" aria-label="Toggle menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-  <!-- Navigation Links -->
-  <div class="nav-center" [class.mobile-open]="mobileMenuOpen">
-    <a (click)="goToAbout()" style="--i: 1">About</a>
-    <a (click)="goToRegistration()" style="--i: 1">Registration</a>
-    <a (click)="goToProducts()" style="--i: 2">Products</a>
-    <a (click)="goToService()" style="--i: 3">Service</a>
-    <a (click)="goToHomePage()" style="--i: 5">Home</a>
-    <a (click)="goToContact()" style="--i: 4">Contact</a>
-
-    <!-- Logout button in mobile menu -->
-    <a *ngIf="isLoggedIn()" class="mobile-logout" (click)="logOut()" style="--i: 6">Logout</a>
+  <!-- ── Search ── -->
+  <div class="nav-search" [class.search-focused]="searchFocused">
+    <i class="pi pi-search search-icon"></i>
+    <input type="text" placeholder="Search products, brands, categories..." [(ngModel)]="searchQuery"
+      (focus)="searchFocused = true" (blur)="searchFocused = false" (keyup.enter)="onSearch()"
+      id="navbar-search-input" />
+    <button class="search-btn" (click)="onSearch()">
+      <i class="pi pi-search"></i>
+      <span>Search</span>
+    </button>
   </div>
 
-  <!-- Desktop Logout -->
-  <div class="nav-right" *ngIf="isLoggedIn()">
-    <a (click)="logOut()" style="--i: 6">Logout</a>
+  <!-- ── Right Actions ── -->
+  <div class="nav-actions">
+    <div class="nav-links">
+      <a (click)="goToHomePage()">Home</a>
+      <a (click)="goToProducts()">Products</a>
+      <a (click)="goToAbout()">About</a>
+      <a (click)="goToContact()">Contact</a>
+    </div>
+
+    <div class="nav-divider"></div>
+
+    <button class="icon-btn cart-icon-btn" (click)="goToCart()" title="Shopping Cart" id="nav-cart-btn">
+      <i class="pi pi-shopping-cart"></i>
+      <span class="cart-badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
+    </button>
+
+    <div class="user-menu" *ngIf="isLoggedIn(); else loginBtn">
+      <button class="icon-btn user-icon-btn" (click)="toggleUserMenu()" id="nav-user-btn">
+        <i class="pi pi-user"></i>
+      </button>
+      <div class="user-dropdown" [class.open]="userMenuOpen">
+        <div class="user-dropdown-header">
+          <div class="user-avatar"><i class="pi pi-user"></i></div>
+          <span>My Account</span>
+        </div>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="goToCart()">
+          <i class="pi pi-shopping-bag"></i> My Cart
+        </a>
+        <a class="dropdown-item" *ngIf="isAdmin" (click)="goToAdminDashboard()">
+          <i class="pi pi-shield"></i> Admin Dashboard
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item logout-item" (click)="logOut()">
+          <i class="pi pi-sign-out"></i> Logout
+        </a>
+      </div>
+    </div>
+
+    <ng-template #loginBtn>
+      <button class="nav-login-btn" (click)="goToLogin()" id="nav-login-btn">
+        <i class="pi pi-sign-in"></i>
+        <span>Sign In</span>
+      </button>
+    </ng-template>
+
+    <button class="hamburger" [class.active]="mobileMenuOpen" (click)="toggleMobileMenu()" aria-label="Toggle menu"
+      id="hamburger-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
+
+  <!-- ── Mobile Drawer ── -->
+  <div class="mobile-drawer" [class.open]="mobileMenuOpen">
+    <div class="mobile-logo">
+      <div class="logo-icon-sm">
+        <i class="pi pi-shopping-bag"></i>
+      </div>
+      <span class="logo-primary">Market</span><span class="logo-accent">Place</span>
+    </div>
+    <div class="mobile-search">
+      <i class="pi pi-search"></i>
+      <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (keyup.enter)="onSearch()" />
+    </div>
+    <a class="mobile-link" (click)="goToHomePage()"><i class="pi pi-home"></i> Home</a>
+    <a class="mobile-link" (click)="goToProducts()"><i class="pi pi-box"></i> Products</a>
+    <a class="mobile-link" (click)="goToAbout()"><i class="pi pi-info-circle"></i> About</a>
+    <a class="mobile-link" (click)="goToContact()"><i class="pi pi-envelope"></i> Contact</a>
+    <a class="mobile-link" (click)="goToCart()"><i class="pi pi-shopping-cart"></i> Cart</a>
+    <div class="mobile-divider"></div>
+    <a class="mobile-link logout-link" *ngIf="isLoggedIn()" (click)="logOut()"><i class="pi pi-sign-out"></i> Logout</a>
+    <a class="mobile-link" *ngIf="!isLoggedIn()" (click)="goToLogin()"><i class="pi pi-sign-in"></i> Login</a>
+  </div>
+  <div class="mobile-overlay" [class.open]="mobileMenuOpen" (click)="closeMobileMenu()"></div>
+
 </nav>

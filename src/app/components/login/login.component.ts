@@ -47,15 +47,15 @@ export class LoginComponent {
     this.registrationService.login(loginnData).subscribe({
       next: (res: any) => {
         this.LoginForm.reset();
-        this.successMessage = res;
         this.submitted = false;
-        this._notificationService.success("Success", "The User Make login Success !")
-        localStorage.setItem('authToken', res); // 🔐 Store token
+        this._notificationService.success("Success", "The User logged in successfully!");
+
+        // Handle cases where backend might return an object like { token: "abc" } instead of a raw string.
+        const token = res.token || res;
+        localStorage.setItem('authToken', token);
         this.router.navigate(['homepage']);
-
-
       }, error: (err) => {
-        this._notificationService.error("Error", err.error)
+        this._notificationService.error("Error", err.error || "Login failed")
       }
     })
 
