@@ -1,7 +1,6 @@
 /* Global styles from nzrm-ng */
 @use 'nzrm-ng/src/lib/styles/global-styles.scss';
 
-
 :root {
     --primary-color: #222831;
     --secondary-color: #393E46;
@@ -42,7 +41,6 @@
 .fadeIn-text-high {
     animation: fadeInUp 5s ease !important;
 }
-
 
 .fadeInUp {
     animation: fadeInUp 1s ease-out;
@@ -104,5 +102,4 @@
 
 .color {
     background-color: black;
-
 }

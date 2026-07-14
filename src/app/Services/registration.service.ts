@@ -21,7 +21,7 @@ export class RegistrationService {
     }
 
     verifyOtp(otpCheckRequest: any) {
-        return this.http.post(this.apiUrl + "/ckeckotp", otpCheckRequest);
+        return this.http.post(this.apiUrl + "/checkotp", otpCheckRequest);
     }
 
     login(loginData: any) {
